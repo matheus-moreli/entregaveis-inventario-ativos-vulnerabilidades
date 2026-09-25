@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_09 - Funções}{Reutilizar uma tarefa com parâmetros}
+\section*{Entregável correto}
+O arquivo deve conter uma função que recebe \codigo{nome} e \codigo{responsavel} e mostra o ativo formatado. O objetivo é perceber que uma função reúne uma tarefa com nome e pode receber dados sem depender de variáveis espalhadas pelo programa.
+\section*{Leitura linha a linha}
+\codigo{def} inicia a definição. Os nomes dentro dos parênteses são \textbf{parâmetros}: espaços reservados para os valores que virão na chamada. O bloco indentado é executado apenas quando a função é chamada. Neste exemplo, a função produz uma saída; quando há um valor para devolver, usa-se \codigo{return}, como em uma classificação de severidade.
+\begin{lstlisting}
+def mostrar_ativo(nome, responsavel):
+    print(f"Ativo: {nome}")
+    print(f"Responsavel: {responsavel}")
+
+mostrar_ativo("Servidor de arquivos", "Equipe TI")
+\end{lstlisting}
+\section*{Como usar no projeto}
+No \codigo{app.py}, uma função por responsabilidade torna o código menor de entender: \codigo{cadastrar\_ativo()}, \codigo{listar\_ativos()} e \codigo{salvar\_dados()} não misturam tarefas. Parâmetros permitem que uma função trabalhe com dados diferentes; \codigo{return} permite, por exemplo, devolver o ativo encontrado para outra parte do programa.
+\section*{Checklist demonstrado}
+Função, \codigo{def}, parâmetros, retorno e modularização foram estudados. Para conferir o entregável, trocar os argumentos da chamada e observar a mesma estrutura de saída com dados diferentes.
+\cardfonte{https://trello.com/c/XWD40Pgo}
+\end{document}

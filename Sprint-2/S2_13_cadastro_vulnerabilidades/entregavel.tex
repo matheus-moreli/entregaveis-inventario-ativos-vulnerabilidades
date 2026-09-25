@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_13 -- Cadastro de Vulnerabilidades}{}
+\bloco{Dados do cadastro} O registro possui CVE, CWE, CVSS, descrição, fonte, data da fonte, impacto no ativo, prioridade, tratamento, status e verificação. Ele é guardado dentro do ativo afetado, evitando uma vulnerabilidade sem relação com o inventário.
+\bloco{Validações} \codigo{validar\_cve} separa o texto por hífen e aceita apenas \codigo{CVE-AAAA-NÚMERO}. \codigo{validar\_cvss} usa \codigo{float} e exige 0.0 a 10.0. Antes de montar o objeto, \codigo{consultar\_por\_id} confirma que o ativo existe. Fonte e data são textos obrigatórios.
+\bloco{Exemplo} Para cadastrar \codigo{CVE-2024-1234}, usa-se uma fonte verificável, a data em que ela foi consultada e um tratamento planejado. Isso é apenas formato de exemplo: o dado técnico deve ser confirmado na fonte indicada antes de ser usado em uma entrega real.
+\bloco{Como testar} Os testes aceitam um CVE e CVSS válidos e rejeitam CVE malformado e CVSS 11. Após cadastro válido, a consulta exata pelo CVE encontra uma ocorrência.
+\bloco{Checklist atendido} Formato CVE, limite CVSS, ativo existente, fonte verificável e cuidado com dados não confirmados.
+\end{document}

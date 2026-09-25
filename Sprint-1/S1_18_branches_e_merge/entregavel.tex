@@ -1,0 +1,21 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_18 - Branches e merge}{Entregar uma funcionalidade com rastreabilidade}
+\section*{Objetivo do card}
+Aqui a branch deixa de ser apenas conceito: uma funcionalidade deve ser criada em linha separada, documentada e integrada. O entregável é a funcionalidade em branch, com seu caminho até o merge registrado.
+\section*{Por que não editar tudo na \codigo{main}?}
+A \codigo{main} representa uma versão estável. Uma branch como \codigo{feature/resumo-inventario} isola a criação do resumo: é possível testar, revisar diferenças e corrigir antes de afetar a versão principal. A branch não cria uma cópia permanente do projeto; é uma referência a uma sequência de commits que depois pode ser integrada.
+\section*{Passo a passo}
+\begin{enumerate}
+\item Partir de uma \codigo{main} atualizada e criar a branch com \codigo{git switch -c feature/resumo-inventario}.
+\item Implementar uma única finalidade, testar e criar um commit descritivo.
+\item Enviar a branch, abrir PR e ler a comparação de arquivos.
+\item Se houver conflito, decidir o conteúdo correto, testar de novo e só então fazer merge.
+\item Atualizar a cópia local com \codigo{git switch main} e \codigo{git pull}.
+\end{enumerate}
+\section*{Aplicação no projeto}
+O resumo do inventário é uma boa funcionalidade isolada: conta ativos e informa dados úteis sem misturar esse acréscimo com correções de JSON. O histórico do repositório mostra o commit da funcionalidade e sua integração, permitindo explicar quando ela entrou no sistema.
+\section*{Checklist demonstrado}
+Criar/trocar branch, merge, conflitos, PR e boas práticas colaborativas. A evidência não é só a existência de uma branch: é a PR com alteração compreensível e a \codigo{main} contendo o resultado após a integração.
+\cardfonte{https://trello.com/c/kFfXpK39}
+\end{document}

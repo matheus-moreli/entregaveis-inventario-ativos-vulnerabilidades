@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_10 -- Atualização de Ativos}{}
+\bloco{Regra principal} O ID é a identidade do ativo. Por isso \codigo{atualizar\_ativo} recebe o ID apenas para localizar a chave e não possui parâmetro para trocá-lo. Os campos permitidos são nome, responsável, localização, tipo e criticidade.
+\bloco{Como funciona} Valores vazios significam ``manter o anterior'' na tela. Valores novos passam pelas mesmas validações do cadastro. Se houver alteração, \codigo{registrar\_historico} acrescenta data/hora e os campos alterados, criando evidência verificável.
+\bloco{Exemplo} Alterar responsável de ``Equipe TI'' para ``Segurança'' muda somente esse atributo. A consulta continua exibindo ID 10. O histórico registra que o responsável mudou.
+\bloco{Como testar} Atualizar o ativo 10, conferir o novo valor, conferir ID 10 e verificar que o histórico possui ao menos o evento de criação e o de atualização. Atualizar ID ausente retorna mensagem controlada.
+\bloco{Checklist atendido} Identificador preservado, campos limitados, valores validados, inexistência tratada e histórico como evidência.
+\end{document}

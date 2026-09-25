@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_14 - Persistência e JSON}{Guardar vulnerabilidades fora da memória}
+\section*{Entregável correto}
+O exercício pede um programa de registro de vulnerabilidades em JSON. Persistir significa que os dados continuam disponíveis depois que o programa termina. Sem arquivo, uma lista em Python desaparece quando a execução acaba.
+\section*{JSON e serialização}
+JSON é um formato textual estruturado, parecido com dicionários e listas: chaves e textos usam aspas duplas. \codigo{json.dump(dados, arquivo)} serializa objetos simples do Python para arquivo; \codigo{json.load(arquivo)} faz o caminho contrário. Deve-se abrir para escrita com \codigo{"w"}, leitura com \codigo{"r"} ou acréscimo de texto com \codigo{"a"}. CSV é útil para tabelas simples; JSON é mais adequado aqui porque uma vulnerabilidade pode ter vários campos.
+\begin{lstlisting}
+import json
+vulnerabilidade = {"descricao": "senha padrao", "severidade": "Alta"}
+with open("vulnerabilidades.json", "w", encoding="utf-8") as arquivo:
+    json.dump([vulnerabilidade], arquivo, ensure_ascii=False, indent=4)
+\end{lstlisting}
+\codigo{with} fecha o arquivo automaticamente, mesmo se algo der errado. \codigo{ensure\_ascii=False} preserva acentos e \codigo{indent=4} deixa o arquivo legível.
+\section*{Aplicação no projeto}
+O \codigo{app.py} usa JSON para o inventário completo. Antes de salvar, os dados precisam ser compostos somente por tipos suportados, como dicionário, lista, texto e número. Por isso, valores de enumeração são convertidos para uma forma simples.
+\section*{Checklist demonstrado}
+Persistência, leitura/escrita de texto, modos \codigo{r/w/a}, CSV, JSON, serialização/desserialização e erros de arquivo foram estudados. O teste do entregável é executar, abrir o JSON e conferir que a vulnerabilidade está registrada em estrutura válida.
+\cardfonte{https://trello.com/c/xdRh1TRi}
+\end{document}

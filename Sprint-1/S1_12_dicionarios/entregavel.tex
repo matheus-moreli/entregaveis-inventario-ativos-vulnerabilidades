@@ -1,0 +1,22 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_12 - Dicionários}{Vincular vulnerabilidades a um ativo}
+\section*{Entregável correto}
+O exercício solicitado registra e atualiza vulnerabilidades associadas a ativos usando dicionários. Isso já se aproxima do modelo do sistema final: em vez de uma lista de textos soltos, cada ativo possui campos com nomes.
+\section*{Estrutura e operações}
+Um dicionário relaciona \textbf{chave} e \textbf{valor}: \codigo{ativo = \{"nome": "Servidor", "vulnerabilidades": []\}}. O acesso é feito pela chave, como \codigo{ativo["nome"]}. Para inserir ou atualizar, atribui-se: \codigo{ativo["criticidade"] = "Alta"}. Para remover, usa-se \codigo{del ativo["criticidade"]} ou \codigo{pop}. \codigo{keys()}, \codigo{values()} e \codigo{items()} permitem percorrer dados.
+\begin{lstlisting}
+ativo = {"nome": "Servidor", "vulnerabilidades": []}
+ativo["vulnerabilidades"].append("porta 22 exposta")
+ativo["vulnerabilidades"][0] = "porta SSH exposta"
+for chave, valor in ativo.items():
+    print(f"{chave}: {valor}")
+\end{lstlisting}
+\section*{Por que há uma lista dentro do dicionário?}
+Um ativo tem uma só chave \codigo{nome}, mas pode ter muitas vulnerabilidades. Por isso, o valor de \codigo{vulnerabilidades} é uma lista. Essa combinação de estruturas modela o mundo real: dicionário descreve um registro e lista guarda ocorrências repetidas ligadas a ele.
+\section*{Aplicação no projeto}
+O \codigo{app.py} usa dicionários para representar ativos, e a vulnerabilidade fica ligada ao ativo correto. Atualizar um valor por chave é a base do menu de edição. Ao salvar em JSON, a mesma forma de dados continua legível.
+\section*{Checklist demonstrado}
+Chave/valor, criação/acesso, inserção/atualização/remoção, \codigo{keys/values/items}, laços e modelagem foram demonstrados. Teste: cadastrar uma vulnerabilidade, atualizar a descrição e listar o dicionário para confirmar a alteração.
+\cardfonte{https://trello.com/c/N1J9NE4k}
+\end{document}

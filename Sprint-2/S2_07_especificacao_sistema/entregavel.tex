@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_07 -- Especificação Completa do Sistema}{}
+\bloco{Escopo} O sistema registra ativos de TI, criticidade, responsável, localização, tipo, vulnerabilidades, fonte, CVE, CWE, CVSS, tratamento e histórico. Permite CRUD de ativos e consultas locais. Não está no escopo: autenticação, varredura automática, integração com APIs externas, interface gráfica ou credenciais.
+\bloco{Modelo de dados} \codigo{Ativo}: ID, nome, responsável, localização, tipo, criticidade, vulnerabilidades e histórico. \codigo{Vulnerabilidade}: CVE, CWE, CVSS, descrição, fonte/data, impacto, prioridade, tratamento, status e verificação. Os nomes usados no texto são os mesmos atributos das classes.
+\bloco{Entradas e saídas} A entrada acontece no menu do terminal. A saída apresenta confirmação, listagem, resultado de consulta ou mensagem de validação. A persistência é o arquivo \codigo{dados/inventario.json}, gerado sem credenciais.
+\bloco{Rastreabilidade} RF01--RF07 e RN01--RN03 estão descritos em S2\_04 e possuem cenários em S2\_06. Assim nenhum requisito fica sem critério de aceitação.
+\bloco{Checklist atendido} Escopo declarado, vocabulário coerente, aceitação ligada a cada requisito, campos e regras alinhados e versão preparada para o repositório.
+\end{document}

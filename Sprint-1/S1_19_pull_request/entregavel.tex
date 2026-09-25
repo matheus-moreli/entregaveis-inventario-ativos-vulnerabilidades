@@ -1,0 +1,15 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_19 - Pull Request}{Revisar antes de integrar}
+\section*{Entregável correto}
+O card pede uma Pull Request completa, documentada e aprovada. PR não é apenas um botão de merge: é uma proposta de mudança, com título, descrição, diferenças legíveis e registro de revisão antes da integração.
+\section*{Repositório remoto, clone e fork}
+O repositório remoto vive no GitHub. \codigo{git clone} cria uma cópia local ligada ao remoto; \textit{fork} cria uma cópia do repositório na conta de outra pessoa, útil quando não há permissão direta para gravar no original. Após mudar arquivos localmente, commits e \codigo{push} disponibilizam uma branch no remoto para abrir a PR.
+\section*{Como revisar uma PR}
+Primeiro, conferir o objetivo: que problema a mudança resolve? Depois, ler a aba de arquivos alterados e procurar efeitos indesejados, como código fora do escopo ou arquivo de dados exposto. Comentários devem apontar uma linha e explicar a razão. Se há conflito com a base, ele deve ser resolvido antes ou durante o merge, seguindo a versão que preserva as duas intenções.
+\section*{Aplicação no projeto}
+As PRs de validação JSON e de resumo de inventário tornam visível a evolução do \codigo{app.py}. Essa documentação liga o que foi aprendido em Git a uma decisão concreta: uma mudança foi desenvolvida, comparada com \codigo{main}, revisada e integrada.
+\section*{Checklist demonstrado}
+Repositório remoto, clone/fork, criação de PR, revisão, integração e conflitos. Uma PR completa tem origem e destino claros, descrição objetiva, alterações verificáveis e resultado do merge registrado.
+\cardfonte{https://trello.com/c/tsLFX3pi}
+\end{document}

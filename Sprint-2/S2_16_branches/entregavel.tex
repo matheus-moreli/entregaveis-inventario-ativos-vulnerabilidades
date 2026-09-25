@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_16 -- Branches}{}
+\bloco{O que é} Uma branch é uma linha de trabalho independente no mesmo repositório. A \codigo{main} deve representar uma versão estável; uma branch como \codigo{feature/s2-08-cadastro-ativos} concentra uma mudança específica sem afetar diretamente a principal.
+\bloco{Fluxo sugerido por card} Atualizar a cópia local da \codigo{main}; criar branch com nome do card; fazer alteração coerente; testar; criar commit explicando a mudança; enviar a branch; abrir Pull Request; revisar; integrar e testar a \codigo{main}. Um card que só produz documentação também pode ter branch própria, por exemplo \codigo{docs/s2-04-requisitos-crud}.
+\bloco{Importante} Não fazer commit diretamente na \codigo{main}. Antes de integrar, sincronizar a branch com a principal para perceber conflitos cedo. Um commit deve ter uma ideia verificável, não várias mudanças sem relação.
+\bloco{Evidência esperada} Branch visível no GitHub, histórico de commits coerentes, Pull Request e teste após merge. A criação e o merge dependem da execução no repositório remoto.
+\bloco{Checklist} Sem commit direto na main, nome representativo, commits coerentes, sincronização e integração verificada.
+\end{document}

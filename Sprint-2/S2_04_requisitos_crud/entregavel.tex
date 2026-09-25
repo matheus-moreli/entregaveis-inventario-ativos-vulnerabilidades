@@ -1,0 +1,7 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_04 -- Requisitos do CRUD}{}
+\bloco{Requisitos identificados} RF01 cadastrar ativo com ID único; RF02 consultar ativo por ID; RF03 filtrar ativos; RF04 atualizar campos permitidos sem mudar ID; RF05 excluir mediante confirmação; RF06 cadastrar vulnerabilidade em ativo existente; RF07 consultar vulnerabilidades. RN01 rejeitar campos obrigatórios vazios. RN02 aceitar CVSS apenas entre 0.0 e 10.0. RN03 não armazenar credenciais.
+\bloco{Como escrever bem} Cada requisito tem identificador, verbo, objeto e condição observável. ``O sistema deve validar'' é vago. ``RN02: o sistema deve rejeitar CVSS menor que 0.0 ou maior que 10.0'' pode ser testado diretamente.
+\bloco{Rastreabilidade} RF01 aparece em \codigo{cadastrar\_ativo}; RN01 em \codigo{validar\_texto}; RN02 em \codigo{validar\_cvss}; RF05 em \codigo{excluir\_ativo}. Cada requisito possui cenários no entregável S2\_06 e testes em \codigo{test\_sprint2.py}.
+\bloco{Checklist atendido} Identificadores únicos, escrita clara, comportamento testável, segurança explícita e relação entre regra e operação.
+\end{document}

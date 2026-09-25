@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_14 -- Consulta de Vulnerabilidades}{}
+\bloco{Consulta local} \codigo{consultar\_vulnerabilidades} percorre todos os ativos e suas listas. Ela pode procurar CVE exato, prioridade e status. O retorno é uma lista de pares \codigo{(ativo, vulnerabilidade)}; nenhum atributo é alterado durante a busca.
+\bloco{Evidência externa} A consulta local mostra fonte e data salvas no momento do cadastro. Como exemplo real, foi consultado em 24/09/2026 o registro \codigo{CVE-2021-44228} no NVD (\url{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}), referente ao Apache Log4j e com CVSS 10.0. A referência externa não é substituída por uma lembrança ou por texto sem origem.
+\bloco{Exemplo} Informar \codigo{CVE-2021-44228} retorna somente registros cujo CVE coincida exatamente, sem alterar o status ou prioridade. Antes do cadastro, deve-se confirmar se o ativo realmente usa o software afetado. Se a lista final estiver vazia, a interface mostra ``Nenhuma vulnerabilidade encontrada''.
+\bloco{Como testar} O teste cadastra uma vulnerabilidade de exemplo e em seguida filtra pelo mesmo CVE. A quantidade esperada é um. Também se pode consultar um CVE inexistente e observar a mensagem controlada.
+\bloco{Checklist atendido} CVE exato, filtros sem mutação, fonte/data exibidas, ausência tratada e procedimento de consulta externa documentado.
+\end{document}

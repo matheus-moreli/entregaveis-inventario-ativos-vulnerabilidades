@@ -1,0 +1,7 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_06 -- Critérios de Aceitação do CRUD}{}
+\bloco{Cenários observáveis} CA01/RF01: dado um ID livre e campos válidos, quando cadastrar, então o ativo aparece na consulta por ID. CA02/RF01: dado um ID já usado, quando cadastrar, então a base não muda e a mensagem informa duplicidade. CA03/RF04: dado o ativo 10, quando atualizar responsável, então o nome novo aparece e o ID continua 10. CA04/RF05: dado o ativo 10, quando a confirmação for diferente de SIM, então ele permanece na base. CA05/RF06: dado um ativo existente e CVE/CVSS válidos, quando cadastrar a vulnerabilidade, então ela aparece na consulta pelo CVE.
+\bloco{Cenário de erro} CA06/RN02: dado CVSS 11, quando cadastrar vulnerabilidade, então o cadastro é recusado sem alterar a lista. CA07/RF02: dado ID inexistente, quando consultar, então o resultado é ``não encontrado'', sem erro técnico.
+\bloco{Como viram testes} Os cenários viraram métodos que começam com \codigo{testar\_} em \codigo{test\_sprint2.py}. O esperado é conferido por \codigo{assertEqual}, \codigo{assertIn} ou \codigo{assertRaises}.
+\bloco{Checklist atendido} Contexto, ação e resultado; sucesso e falha; resultado visível; requisito indicado; possibilidade de automação.
+\end{document}

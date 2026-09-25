@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_11 -- Exclusão de Ativos}{}
+\bloco{Política de exclusão} Exclusão é uma operação destrutiva. O sistema identifica claramente o alvo com ID e nome, avisa que suas vulnerabilidades também serão removidas e exige a palavra \codigo{SIM}. Qualquer outra resposta cancela a operação.
+\bloco{Implementação} A tela mostra ``Confirme o alvo: ID 10 - SRV-ARQUIVOS''. Ela converte a confirmação em \codigo{True} ou \codigo{False}; a regra \codigo{excluir\_ativo} só executa \codigo{del ativos[identificador]} quando recebe \codigo{True}. Dessa forma a regra também pode ser testada sem simular teclado.
+\bloco{Casos importantes} Se o registro não existe, nada é excluído e a mensagem informa isso. Se o usuário cancela, a função devolve \codigo{False} e o dicionário preserva a chave. Se confirma, a função devolve \codigo{True} e a chave deixa de existir.
+\bloco{Como testar} O teste de exclusão tenta primeiro \codigo{False} e depois \codigo{True}, verificando a presença e a ausência da chave, respectivamente.
+\bloco{Checklist atendido} Alvo identificado, confirmação obrigatória, cancelamento sem mudança, inexistência tratada e política documentada.
+\end{document}

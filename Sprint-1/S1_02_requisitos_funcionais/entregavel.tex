@@ -1,0 +1,24 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_02 - Requisitos funcionais}{O que o sistema precisa fazer}\enlargethispage{3\baselineskip}
+\section*{Ideia central}
+Um requisito funcional (RF) descreve uma ação observável do sistema. A formulação deve conter um verbo e um resultado: ``o sistema deve cadastrar um ativo''. Isso é diferente de escrever apenas ``ativos'', que não informa nenhuma ação. Requisito não funcional (RNF) descreve condição, limite ou qualidade: ``o sistema deve manter os dados em JSON''.
+\section*{Requisitos do inventário}
+\begin{itemize}
+\item RF01: cadastrar ativo com identificador, nome, tipo, responsável e localização.
+\item RF02: listar e buscar ativos cadastrados.
+\item RF03: atualizar e remover ativo pelo identificador.
+\item RF04: registrar vulnerabilidade vinculada a um ativo e informar sua severidade.
+\item RF05: visualizar vulnerabilidades e gerar um resumo do inventário.
+\item RNF01: validar campos obrigatórios e valores numéricos. RNF02: persistir os dados em JSON. RNF03: operar pelo terminal com mensagens claras.
+\end{itemize}
+\section*{CRUD e casos de uso}
+CRUD é uma sigla para \textit{Create, Read, Update, Delete}: criar, consultar, alterar e excluir. No projeto, cadastro é Create; listar e buscar são Read; atualização é Update; remoção é Delete. O gerenciamento de vulnerabilidades complementa o CRUD porque registra um risco relacionado a um ativo.
+
+Exemplo de caso de uso: \textbf{Cadastrar ativo}. Ator: usuário do inventário. Fluxo: escolhe cadastro, informa os campos, o sistema valida os valores, guarda o ativo e confirma o resultado. Resultado esperado: o ativo aparece em uma consulta posterior.
+\section*{Como isso aparece no código}
+No \codigo{app.py}, as opções do menu são a tradução dos RFs. Funções separadas como \codigo{cadastrar\_ativo} e \codigo{buscar\_ativo} tornam possível relacionar uma função do código a uma necessidade do sistema. Se um requisito não estiver associado a um fluxo, ainda falta implementação ou especificação.
+\section*{Checklist demonstrado}
+Foram estudados: conceito de RF; diferença entre RF e RNF; identificação de funcionalidades; caso de uso; critérios de aceitação; relação entre requisitos e CRUD. Cada item acima pode ser revisado perguntando: ``qual ação o usuário realiza, qual dado informa e qual resultado consegue observar?''
+\cardfonte{https://trello.com/c/nPnrvQad}
+\end{document}

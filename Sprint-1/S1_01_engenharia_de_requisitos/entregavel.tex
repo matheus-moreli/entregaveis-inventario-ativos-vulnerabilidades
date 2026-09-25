@@ -1,0 +1,22 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_01 - Engenharia de requisitos}{Recorte de estudo e análise do problema}\enlargethispage{3\baselineskip}
+\section*{O que este card pede}
+Antes de programar, é preciso entender qual problema será resolvido. Neste trabalho, o problema é organizar ativos de TI (por exemplo, notebook, servidor e roteador) e registrar vulnerabilidades que podem afetá-los. O card pede uma análise de domínio: quem usa o sistema, quais informações existem, quais ações o sistema precisa oferecer e quais limites ele deve respeitar.
+\section*{Como pensar a análise}
+\textbf{Requisito} é uma necessidade verificável do sistema. Um requisito funcional responde ``o que o programa faz''; por exemplo, cadastrar um ativo. Um requisito não funcional descreve uma qualidade ou restrição; por exemplo, o programa deve salvar os dados em arquivo JSON e apresentar mensagens compreensíveis. O \textbf{domínio} é o assunto do sistema: aqui, inventário e vulnerabilidades de ativos de TI.
+
+Uma entidade é algo sobre o qual guardamos dados. Neste projeto há duas entidades principais: \textbf{ativo} (identificador, nome, tipo, responsável e localização) e \textbf{vulnerabilidade} (descrição, severidade e ativo relacionado). Um caso de uso descreve uma interação completa: ``o responsável cadastra um ativo'', ``o usuário consulta um ativo'', ``o usuário registra uma vulnerabilidade''.
+\section*{Aplicação no projeto final}
+O arquivo \codigo{app.py} transforma a análise em opções de menu: cadastrar, listar, buscar, atualizar e remover ativos; registrar e visualizar vulnerabilidades; salvar e gerar resumo. Essa relação é importante: cada função do programa existe para atender a uma necessidade identificada antes do código. O JSON representa as entidades persistidas quando o programa é fechado.
+\section*{Checklist demonstrado}
+\begin{itemize}
+\item Engenharia de requisitos e análise do problema: transformar uma necessidade em comportamentos claros.
+\item Requisitos funcionais e não funcionais: separar ações do sistema de suas condições de qualidade.
+\item Domínio, ativos e vulnerabilidades: identificar os conceitos reais da área de cibersegurança.
+\item Entidades, informações, casos de uso e boas práticas: definir dados, usuários e fluxos antes de implementar.
+\end{itemize}
+\section*{Evidência produzida}
+Este recorte é a síntese técnica solicitada pelo exercício ``Introdução ao projeto''. A especificação detalhada continua nos cards S1\_02 e S1\_03, para que os requisitos e seus critérios possam ser conferidos depois.
+\cardfonte{https://trello.com/c/2nV6OG9q}
+\end{document}

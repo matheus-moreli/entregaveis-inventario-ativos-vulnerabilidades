@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_08 -- Cadastro de Ativos}{}
+\bloco{Dados mínimos} O cadastro pede ID único, nome/hostname, responsável, localização, tipo e criticidade. Não pede senha, token ou outra credencial: inventário identifica o ativo, não armazena segredos.
+\bloco{Lógica} A interface recebe as respostas. Depois \codigo{cadastrar\_ativo} verifica o ID, chama as validações de texto e criticidade, cria um objeto \codigo{Ativo}, registra ``Ativo cadastrado'' no histórico e só então o insere no dicionário. Se ocorrer erro antes dessa linha, não há ativo incompleto na base.
+\bloco{Criticidade} As opções padronizadas são Baixa, Média, Alta e Crítica. Essa classificação é do ativo; ela ajuda a priorizar uma vulnerabilidade com base no contexto, e não apenas na nota técnica CVSS.
+\bloco{Como testar} Cadastre ID 10 com criticidade Alta e busque pelo ID. Tente cadastrar o mesmo ID: deve ser recusado. Consulte o histórico do registro criado.
+\bloco{Checklist atendido} ID único, obrigatórios validados, criticidade padronizada, nenhuma credencial solicitada e ativo consultável após criação.
+\end{document}

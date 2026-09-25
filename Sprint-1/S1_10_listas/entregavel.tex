@@ -1,0 +1,21 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_10 - Listas}{Cadastrar, remover e listar ativos}
+\section*{Entregável correto}
+O programa deve manter uma lista de ativos e permitir cadastrar, remover e listar. A lista é adequada quando a quantidade de elementos muda enquanto o programa está em execução.
+\section*{Como uma lista funciona}
+Uma lista usa colchetes: \codigo{ativos = []}. \codigo{append(valor)} acrescenta ao final; \codigo{remove(valor)} remove o primeiro valor igual; \codigo{in} verifica se algo está presente. Índices começam em zero: \codigo{ativos[0]} é o primeiro item; \codigo{ativos[1:3]} é um recorte. Antes de remover, verificar com \codigo{in} evita erro quando o valor não existe.
+\begin{lstlisting}
+ativos = []
+ativos.append("Roteador do laboratorio")
+if "Roteador do laboratorio" in ativos:
+    ativos.remove("Roteador do laboratorio")
+for ativo in ativos:
+    print(ativo)
+\end{lstlisting}
+\section*{Aplicação no projeto}
+O \codigo{app.py} guarda vários ativos em uma coleção e usa \codigo{for} para exibir cada um. O projeto final evolui a estrutura: em vez de apenas texto, cada item possui vários dados em dicionários. A ideia de adicionar, procurar e remover continua a mesma.
+\section*{Checklist demonstrado}
+Listas, criação, índice/fatiamento, adição, remoção, laços e aplicação no inventário. O teste mínimo é cadastrar dois nomes, listar os dois, remover um e confirmar que o outro permanece.
+\cardfonte{https://trello.com/c/EurwtLl9}
+\end{document}

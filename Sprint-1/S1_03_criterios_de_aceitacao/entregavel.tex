@@ -1,0 +1,19 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_03 - Critérios de aceitação}{Como saber se uma funcionalidade está pronta}
+\section*{O que são critérios de aceitação}
+Um requisito diz o que precisa existir; o critério de aceitação diz como verificar se foi atendido. Ele deve ser objetivo, observável e testável. Assim, ``o cadastro deve funcionar'' é vago; ``ao informar ID, nome, responsável, localização e tipo válidos, o ativo deve aparecer na listagem'' é um critério verificável.
+\section*{Critérios definidos}
+\textbf{Cadastro de ativo:} campos obrigatórios não podem ficar vazios; o ID deve ser numérico; um ID já utilizado deve gerar mensagem de impedimento; após confirmar, a listagem deve mostrar os dados. \textbf{Registro de vulnerabilidade:} deve ser escolhida uma severidade válida; a vulnerabilidade deve ser associada a um ativo existente; a consulta posterior deve exibir descrição e severidade.
+\section*{Casos de teste manual}
+\begin{itemize}
+\item Caso válido: cadastrar ID 10, nome ``Notebook do laboratório'', responsável ``Equipe TI'' e localização ``Sala 3''. Esperado: confirmação e item visível ao listar.
+\item Caso inválido: tentar cadastrar o mesmo ID 10 ou deixar o nome vazio. Esperado: aviso de validação e nenhum novo ativo criado.
+\item Vulnerabilidade: associar ``senha padrão ativa'' ao ID 10 com severidade Alta. Esperado: registro visível ao consultar vulnerabilidades.
+\end{itemize}
+\section*{Relação com o projeto}
+As validações e mensagens do \codigo{app.py} não existem por enfeite: elas satisfazem critérios. Em uma entrega, testar significa executar um caso com entrada conhecida, comparar a saída ao resultado esperado e registrar se passou ou falhou. A definição de pronto (\textit{Definition of Done}) desta etapa é: requisito implementado, entradas inválidas tratadas e resultado conferido.
+\section*{Checklist demonstrado}
+Conceito de critérios, relação com requisitos, validação, definição de pronto e exemplos aplicados ao Trabalho 1 foram contemplados neste recorte.
+\cardfonte{https://trello.com/c/MRXQneEZ}
+\end{document}

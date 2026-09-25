@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_16 - Git e GitHub}{Registrar a evolução do trabalho}
+\section*{Entregável correto}
+O card pede um repositório no GitHub com o projeto e seu histórico de commits. Git não substitui o projeto: ele registra versões dele. GitHub é o serviço remoto onde esse repositório pode ser publicado e compartilhado.
+\section*{Ciclo básico de versionamento}
+Um repositório local nasce com \codigo{git init}. \codigo{git status} mostra o que mudou. \codigo{git add arquivo} seleciona mudanças para a próxima versão; \codigo{git commit -m "mensagem"} cria o marco histórico. Para publicar, configura-se um remoto e usa-se \codigo{git push}. \codigo{git pull} traz mudanças que já existem no remoto. \codigo{git log} permite ler a sequência de commits.
+\begin{lstlisting}
+git status
+git add app.py dados/inventario.json
+git commit -m "feat: cadastrar ativos"
+git push origin main
+\end{lstlisting}
+Uma mensagem de commit deve dizer o que mudou: ``feat: cadastrar ativos'' é melhor que ``alteracoes''. Cada commit pequeno permite entender, revisar e recuperar uma etapa sem misturar assuntos.
+\section*{Evidência deste projeto}
+O repositório publicado é \href{https://github.com/matheus-moreli/inventario-ativos-vulnerabilidades}{inventario-ativos-vulnerabilidades}. O histórico contém commits de funcionalidades e de documentação. Clonar um repositório com \codigo{git clone URL} cria uma cópia local; abrir \codigo{git log} nela mostra as versões anteriores.
+\section*{Checklist demonstrado}
+Conceito de controle de versão, instalação/configuração, inicialização, commits e mensagens, \codigo{push/pull} e histórico. A conferência prática é abrir o repositório, localizar os arquivos do projeto e verificar que há mais de um commit com propósito identificável.
+\cardfonte{https://trello.com/c/vUu4H8Bq}
+\end{document}

@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_03 -- O que é CRUD?}{}
+\bloco{Significado} CRUD reúne quatro ações sobre registros: \textit{Create} (criar), \textit{Read} (consultar), \textit{Update} (atualizar) e \textit{Delete} (excluir). No sistema, o identificador é a chave do dicionário e não é alterado durante o ciclo.
+\bloco{Aplicação} Para ativos: \codigo{cadastrar\_ativo}, \codigo{consultar\_por\_id}, \codigo{atualizar\_ativo} e \codigo{excluir\_ativo}. Para vulnerabilidades: \codigo{cadastrar\_vulnerabilidade}, \codigo{consultar\_vulnerabilidades}, \codigo{atualizar\_vulnerabilidade} e \codigo{excluir\_vulnerabilidade}. A vulnerabilidade é identificada pelo CVE dentro do ativo, portanto não precisa de outro ID.
+\bloco{Exemplo de sequência} Cadastrar o ID 10; buscá-lo pelo ID; atualizar o responsável; consultar novamente e verificar que ainda é o ID 10; tentar excluir com \codigo{False} e conferir que ele permanece; excluir com \codigo{True}. Para vulnerabilidade, cadastrar um CVE, mudar seu status e removê-lo somente após confirmação. Para um ID ou CVE ausente, as operações mostram mensagem tratada.
+\bloco{Como testar} Os testes automatizados cobrem cadastro, ID duplicado, busca inexistente, atualização com preservação do ID, exclusão confirmada/cancelada, CVE duplicado e atualização/remoção de vulnerabilidade.
+\bloco{Checklist atendido} Quatro operações disponíveis, identidade preservada, entradas inválidas rejeitadas, inexistência tratada e ciclo completo testado.
+\end{document}

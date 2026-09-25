@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_09 -- Busca de Ativos}{}
+\bloco{Tipos de busca} A busca por ID usa \codigo{consultar\_por\_id} e devolve um único ativo ou \codigo{None}. A busca com filtros usa \codigo{filtrar\_ativos}: termo parcial do nome, tipo e criticidade podem ser combinados.
+\bloco{Como a filtragem funciona} O \codigo{for} percorre os objetos do dicionário. Para cada ativo que não atende a um filtro, \codigo{continue} pula para o próximo. Quem atende é acrescentado a uma nova lista chamada \codigo{resultado}. A base original nunca recebe modificação.
+\bloco{Exemplo} Buscar termo \codigo{srv} e criticidade \codigo{Alta} encontra \codigo{SRV-ARQUIVOS} se os dois critérios forem verdadeiros. Uma busca sem resultado mostra mensagem previsível; não tenta acessar uma chave inexistente.
+\bloco{Como testar} O teste \codigo{testar\_filtro\_nao\_altera\_a\_base} confirma simultaneamente que há um resultado e que a quantidade da base permanece igual.
+\bloco{Checklist atendido} ID único, filtros previsíveis, consulta sem alteração, ausência tratada e casos cobertos por teste.
+\end{document}

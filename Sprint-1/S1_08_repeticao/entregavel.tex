@@ -1,0 +1,25 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_08 - Estruturas de repetição}{Manter um menu aberto até ``Sair''}
+\section*{Entregável correto}
+O card pede um menu que se repita até a opção ``Sair''. Isso prepara a estrutura principal do sistema: o programa não realiza uma única ação e fecha; ele apresenta escolhas, executa uma ação e retorna ao menu.
+\section*{Como cada laço funciona}
+\codigo{while} repete enquanto uma condição for verdadeira. Um \codigo{while True} é útil para menu, desde que exista uma saída explícita com \codigo{break}. \codigo{for} percorre itens conhecidos; \codigo{range(1, 11)} produz números de 1 a 10. \codigo{continue} pula apenas a volta atual do laço, enquanto \codigo{break} encerra o laço inteiro.
+\begin{lstlisting}
+while True:
+    opcao = input("1-Cadastrar | 0-Sair: ")
+    if opcao == "0":
+        print("Programa encerrado.")
+        break
+    elif opcao == "1":
+        print("Cadastro selecionado.")
+    else:
+        print("Opcao invalida.")
+        continue
+\end{lstlisting}
+\section*{Aplicação no projeto}
+O menu do \codigo{app.py} aplica exatamente essa ideia: fica ativo, lê uma escolha, chama a função correspondente e termina somente na opção de saída. Laços \codigo{for} também listam ativos e vulnerabilidades um por um.
+\section*{Checklist demonstrado}
+Repetição, \codigo{for}, \codigo{while}, \codigo{range}, \codigo{break}, \codigo{continue} e aplicação prática foram estudados. Teste: selecionar uma opção, voltar ao menu e só então digitar ``0''; o encerramento não deve ocorrer antes.
+\cardfonte{https://trello.com/c/op3s5sKj}
+\end{document}

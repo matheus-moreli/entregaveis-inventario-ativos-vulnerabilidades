@@ -1,0 +1,19 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_05 - Variáveis e tipos de dados}{Guardar informações de um ativo}
+\section*{O que o card pede}
+O entregável correto solicita ao usuário o ID, nome e responsável de um ativo de TI e mostra essas informações formatadas. Ele demonstra variáveis, entrada, saída e tipos de dados; não é apenas uma declaração abstrata de variáveis.
+\section*{Como funciona}
+Uma variável é um nome que referencia um valor enquanto o programa roda. \codigo{nome = "Firewall"} guarda texto, portanto \codigo{nome} é \codigo{str}. IDs e quantidades normalmente são \codigo{int}; preços podem ser \codigo{float}; uma resposta de sim/não pode ser \codigo{bool}. \codigo{input()} sempre devolve texto, então \codigo{int(input("ID: "))} faz a conversão explícita para número inteiro.
+\begin{lstlisting}
+id_ativo = int(input("ID do ativo: "))
+nome = input("Nome: ")
+responsavel = input("Responsavel: ")
+print(f"ID: {id_ativo} | Ativo: {nome} | Responsavel: {responsavel}")
+\end{lstlisting}
+\section*{Aplicação no projeto}
+No \codigo{app.py}, cada cadastro começa com valores recebidos do usuário e guardados em variáveis. Depois, eles formam um dicionário que será salvo em JSON. Dar nomes claros, como \codigo{responsavel} em vez de \codigo{x}, reduz erros e permite explicar a lógica.
+\section*{Checklist demonstrado}
+Conceito de variável, tipos primários, conversões, entrada/saída e aplicação de dados de ativos foram praticados. Para testar, informar um ID numérico e conferir se os três dados aparecem na mesma mensagem. Este é o entregável do card; exemplos adicionais só servem para estudar, não o substituem.
+\cardfonte{https://trello.com/c/DmvtABXt}
+\end{document}

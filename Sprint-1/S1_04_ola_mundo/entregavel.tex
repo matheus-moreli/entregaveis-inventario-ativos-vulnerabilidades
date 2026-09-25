@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_04 - Primeiro programa em Python}{Saída no terminal com \codigo{print}}
+\section*{O que o card pede}
+O entregável é um programa ``Hello, World!'' executado corretamente. O objetivo não é a complexidade: é confirmar que Python está instalado, que o arquivo \codigo{.py} é reconhecido e que o aluno consegue executar um script pelo terminal.
+\section*{Como \codigo{print} funciona}
+\codigo{print()} envia uma representação de um valor para a tela. Texto é escrito entre aspas: \codigo{print("Olá")}. O argumento \codigo{sep} define o separador entre valores e \codigo{end} muda o final da linha. A quebra de linha comum é \codigo{\textbackslash n}: \codigo{print("linha 1\textbackslash nlinha 2")}. Quando uma variável precisa aparecer dentro de um texto, uma f-string torna a leitura simples: \codigo{print(f"Ativo: \{nome\}")}. As chaves são substituídas pelo valor da variável.
+\begin{lstlisting}
+nome = "Servidor de arquivos"
+print("Hello, World!")
+print(f"Exemplo de ativo: {nome}")
+\end{lstlisting}
+\section*{Aplicação no projeto}
+Todo diálogo do \codigo{app.py} usa \codigo{print}: título do menu, listas de ativos, confirmações e erros. A diferença é que, no projeto final, o texto mostrado depende dos dados guardados. O primeiro programa ensina o mecanismo básico de comunicação do programa com quem o utiliza.
+\section*{Como executar e conferir}
+No terminal, entrar na pasta do arquivo e executar \codigo{python S1\_04.py}. A saída deve conter ``Hello, World!'', o nome e o curso. Se nada aparecer, conferir o nome do arquivo, o comando usado e a instalação do interpretador.
+\section*{Checklist demonstrado}
+Instalação/configuração do Python, estrutura básica de um script, comando \codigo{print}, execução e primeiro programa foram revisados e praticados.
+\cardfonte{https://trello.com/c/YeugQuYt}
+\end{document}

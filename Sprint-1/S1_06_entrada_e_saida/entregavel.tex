@@ -1,0 +1,21 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_06 - Entrada e saída}{Conversar com quem usa o programa}
+\section*{Entregável correto}
+O programa deve solicitar ID, nome, responsável e localização de um ativo e apresentar esses dados de maneira formatada. O foco é compreender que a entrada é texto até que seja convertida e que a saída deve ser legível para a pessoa usuária.
+\section*{Passo a passo}
+\codigo{input("Pergunta: ")} mostra uma pergunta e espera o teclado. O valor devolvido é uma \codigo{str}; por isso, quando ID representa número, usa-se \codigo{int(...)}. Uma f-string começa com \codigo{f} antes das aspas e coloca expressões entre chaves. Ela evita concatenar muitos trechos e preserva a leitura do texto.
+\begin{lstlisting}
+id_ativo = int(input("ID: "))
+nome = input("Nome: ")
+responsavel = input("Responsavel: ")
+localizacao = input("Localizacao: ")
+print(f"Ativo {id_ativo}: {nome}\nResponsavel: {responsavel}\nLocal: {localizacao}")
+\end{lstlisting}
+O \codigo{\textbackslash n} cria uma nova linha. Se o usuário digitar letras para o ID, a conversão falha; na S1\_15 essa situação passa a ser tratada com \codigo{try/except}.
+\section*{Uso no projeto final}
+Cadastro, busca e atualização no \codigo{app.py} usam a mesma sequência: pedir, converter quando necessário, validar e mostrar uma resposta. A diferença é que o projeto armazena o resultado para uso posterior.
+\section*{Checklist demonstrado}
+Entrada com \codigo{input}, saída com \codigo{print}, conversão de tipos, f-strings e interação usuário-sistema. Teste com valores reais e confira que todos os quatro campos aparecem, sem substituir o ID numérico por texto.
+\cardfonte{https://trello.com/c/fFlJ9zCj}
+\end{document}

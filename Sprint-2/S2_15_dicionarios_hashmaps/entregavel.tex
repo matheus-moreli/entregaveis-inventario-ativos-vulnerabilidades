@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_15 -- Dicionários (Hashmaps)}{}
+\bloco{Ideia} Um dicionário associa uma chave a um valor. Neste projeto, \codigo{ativos[10]} liga o ID 10 a um objeto \codigo{Ativo}. Isso permite encontrar o ativo sem percorrer toda a lista e impede que o mesmo ID ocupe duas posições.
+\bloco{CRUD com a chave} Criar insere \codigo{ativos[identificador] = ativo}. Ler usa \codigo{ativos.get(identificador)}, que devolve \codigo{None} em vez de provocar \codigo{KeyError}. Atualizar recupera o objeto pela mesma chave e nunca muda a chave. Excluir usa \codigo{del} somente após confirmação.
+\bloco{Esquema uniforme} Todo valor do dicionário é um objeto \codigo{Ativo} com os mesmos atributos. Ao salvar, \codigo{para\_dicionario()} transforma todos em uma estrutura JSON uniforme. Ao abrir, \codigo{de\_dicionario()} reconstrói os objetos.
+\bloco{Como testar} ID duplicado, consulta ausente, atualização preservando a chave e os quatro passos CRUD são verificados em \codigo{test\_sprint2.py}.
+\bloco{Checklist atendido} ID único, ausência segura, formato uniforme, chave preservada e operações testadas.
+\end{document}

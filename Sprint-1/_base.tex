@@ -1,0 +1,19 @@
+% Estilo comum dos PDFs individuais da Sprint 1.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage[a4paper,margin=2.35cm]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{needspace}
+\definecolor{azul}{RGB}{20,63,112}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul}
+\setlist[itemize]{leftmargin=*,itemsep=3pt}
+\lstset{basicstyle=\ttfamily\small,frame=single,breaklines=true,columns=fullflexible}
+\sloppy
+\newcommand{\codigo}[1]{\texttt{#1}}
+\newcommand{\titulo}[2]{\begin{center}{\LARGE\bfseries #1\par}\vspace{4pt}{\large #2\par}\vspace{8pt}\rule{0.8\textwidth}{0.4pt}\par\vspace{5pt}{\small Matheus Moreli Durão Silva -- Matrícula 12621CBS217\par Cibersegurança - Bacharelado - Noturno\par}\end{center}}
+\newcommand{\cardfonte}[1]{\par\smallskip\noindent\textit{Referência: }\href{#1}{Trello - enunciado e checklist do card}.}

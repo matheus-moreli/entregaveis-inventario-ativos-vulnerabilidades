@@ -1,0 +1,27 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_15 - Tratamento de erros}{Salvar e carregar ativos com segurança}
+\section*{Entregável correto}
+O exercício solicitado é um sistema de cadastro de ativos com tratamento de erros na leitura e escrita de arquivos. Ele também pede validar entrada numérica e usar \codigo{raise} para dado inválido. Erro não é algo a esconder: é uma situação prevista que precisa receber uma resposta compreensível.
+\section*{Como \codigo{try/except} funciona}
+Dentro de \codigo{try} fica a operação que pode falhar. \codigo{except ValueError} trata, por exemplo, texto onde era esperado inteiro; \codigo{except FileNotFoundError} trata arquivo ausente. \codigo{else} roda apenas se não houver falha; \codigo{finally} roda sempre, sendo útil para encerramentos. Tratar exceções específicas é melhor que usar \codigo{except:} sem nome, que pode esconder problemas reais.
+\begin{lstlisting}
+class DadosInvalidosError(Exception):
+    pass
+
+def validar_id(texto):
+    if not texto.isdigit():
+        raise DadosInvalidosError("ID deve conter somente numeros.")
+    return int(texto)
+
+try:
+    id_ativo = validar_id(input("ID: "))
+except DadosInvalidosError as erro:
+    print(f"Erro: {erro}")
+\end{lstlisting}
+\section*{Aplicação no projeto}
+No \codigo{app.py}, a validação impede cadastro inconsistente; a leitura do JSON distingue arquivo inexistente de conteúdo inválido; o salvamento informa se conseguiu concluir. Uma exceção personalizada comunica melhor a regra quebrada do que uma mensagem genérica.
+\section*{Checklist demonstrado}
+Erro versus exceção, \codigo{try/except}, \codigo{else/finally}, exceções específicas, \codigo{raise}, validação e erros de operação foram estudados. Testes: digitar ID com letras, tentar carregar arquivo inexistente e salvar dados válidos.
+\cardfonte{https://trello.com/c/qSZwgosj}
+\end{document}

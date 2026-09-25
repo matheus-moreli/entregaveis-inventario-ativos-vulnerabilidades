@@ -1,0 +1,27 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_07 - Estruturas condicionais}{Classificar a severidade de uma vulnerabilidade}
+\section*{Entregável correto}
+O programa recebe a severidade de uma vulnerabilidade e mostra a classificação usando condicionais. As opções estudadas são Baixa, Média, Alta e Crítica; qualquer outro valor precisa ser identificado como inválido.
+\section*{Como a decisão funciona}
+\codigo{if} executa um bloco quando a condição é verdadeira. \codigo{elif} testa outra possibilidade apenas se as anteriores falharem, e \codigo{else} cobre o caso restante. \codigo{==} compara valores; \codigo{and} exige duas condições verdadeiras; \codigo{or} aceita ao menos uma. A indentação (espaços à esquerda) pertence à sintaxe do Python e define o bloco.
+\begin{lstlisting}
+severidade = input("Severidade: ").strip().lower()
+if severidade == "baixa":
+    print("Classificacao: Baixa")
+elif severidade == "media":
+    print("Classificacao: Media")
+elif severidade == "alta":
+    print("Classificacao: Alta")
+elif severidade == "critica":
+    print("Classificacao: Critica")
+else:
+    print("Severidade invalida.")
+\end{lstlisting}
+\codigo{strip()} remove espaços das pontas e \codigo{lower()} deixa a comparação menos sensível a maiúsculas. Isso é uma validação simples, não uma regra ``secreta''.
+\section*{Aplicação no projeto}
+O \codigo{app.py} usa decisões para validar campos, verificar se existe ativo e interpretar escolhas do menu. A classificação de severidade volta a aparecer nas vulnerabilidades; mais adiante, \codigo{Enum} reduz o risco de escrever valores diferentes para a mesma opção.
+\section*{Checklist demonstrado}
+Tomada de decisão, \codigo{if}, \codigo{if/else}, \codigo{if/elif/else}, operadores relacionais/lógicos e validação foram aplicados. Testar uma opção válida e uma inválida comprova os dois caminhos.
+\cardfonte{https://trello.com/c/QvZa8m7a}
+\end{document}

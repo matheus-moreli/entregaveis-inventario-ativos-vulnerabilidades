@@ -1,0 +1,27 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_13 - Enumerações}{Estados válidos para um ativo}
+\section*{Entregável correto}
+O card pede o exercício de status de ativos com \codigo{Enum}. Uma enumeração evita que cada parte do programa escreva uma variação diferente de um mesmo estado, como ``ativo'', ``Ativo'' ou ``em uso'' sem padrão.
+\section*{Como criar e acessar uma enumeração}
+Importa-se \codigo{Enum}, declara-se uma classe e cada membro recebe valor. O membro é acessado pelo nome, por exemplo \codigo{StatusAtivo.ATIVO}; o valor associado pode ser mostrado com \codigo{.value}. Ao comparar, compare membros da mesma enumeração, não textos improvisados.
+\begin{lstlisting}
+from enum import Enum
+
+class StatusAtivo(Enum):
+    ATIVO = "Ativo"
+    MANUTENCAO = "Em manutencao"
+    INATIVO = "Inativo"
+
+status = StatusAtivo.ATIVO
+if status == StatusAtivo.ATIVO:
+    print(status.value)
+for opcao in StatusAtivo:
+    print(opcao.value)
+\end{lstlisting}
+\section*{Aplicação no projeto}
+O \codigo{app.py} usa \codigo{IntEnum} para categorias de ativos, mantendo opções numeradas consistentes. Para salvar um \codigo{Enum} em JSON, não se grava o objeto diretamente; salva-se \codigo{.value} ou um valor numérico e, ao ler, reconstrói-se a enumeração. Isso explica por que padronização e persistência precisam ser pensadas juntas.
+\section*{Checklist demonstrado}
+Conceito de Enum, criação, acesso a membros e valores, comparação, iteração e contexto do projeto. O teste é percorrer todos os status e conferir que o ativo só recebe uma das opções definidas.
+\cardfonte{https://trello.com/c/nJrQKljh}
+\end{document}

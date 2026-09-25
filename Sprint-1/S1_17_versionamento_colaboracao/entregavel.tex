@@ -1,0 +1,20 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_17 - Versionamento colaborativo}{Branch, merge e Pull Request}
+\section*{Entregável correto}
+O card pede uma branch criada, integrada e documentada no GitHub. Uma branch é uma linha alternativa de trabalho: ela permite desenvolver uma mudança sem alterar imediatamente a versão principal, chamada \codigo{main}.
+\section*{Fluxo explicado}
+Criar uma branch com \codigo{git switch -c feature/validacao-json} copia o ponto atual para uma linha de trabalho. Nela, criam-se commits da funcionalidade. Ao terminar, a branch pode ser enviada ao GitHub com \codigo{git push -u origin feature/validacao-json}. A Pull Request (PR) mostra a comparação entre a branch e \codigo{main}; após revisão, o merge integra as alterações.
+\begin{lstlisting}
+git switch -c feature/validacao-json
+git add app.py
+git commit -m "feat: validar formato JSON"
+git push -u origin feature/validacao-json
+\end{lstlisting}
+Conflito acontece quando duas versões alteram a mesma região de forma incompatível. Git marca as alternativas, a pessoa decide qual conteúdo fica, salva, adiciona o arquivo resolvido e conclui o merge. Não é um erro ``misterioso''; é uma decisão que precisa ser explícita.
+\section*{Evidência no projeto}
+O repositório possui a branch \codigo{feature/validacao-json}, posteriormente integrada por Pull Request. A documentação correta da etapa aponta a finalidade da branch, os commits, a PR e o resultado do merge, em vez de apenas dizer que ``deu certo''.
+\section*{Checklist demonstrado}
+Versionamento, branches, commits, merge, conflitos, Pull Requests e colaboração no GitHub. Para revisar, comparar a PR com a \codigo{main} e confirmar que os arquivos desejados foram integrados.
+\cardfonte{https://trello.com/c/Ec5uKKhf}
+\end{document}

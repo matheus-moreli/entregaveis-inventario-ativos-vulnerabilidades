@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_02 -- Classes, Funções e Chamadas}{}
+\bloco{O que o card pede} Modelar \codigo{Ativo} e \codigo{Vulnerabilidade} com classes e organizar as operações em funções reutilizáveis.
+\bloco{Conceito} Uma classe é uma forma de guardar, no mesmo lugar, os dados que descrevem uma entidade e ações simples dela. Por exemplo, um objeto \codigo{Ativo} possui \codigo{id}, \codigo{nome}, \codigo{criticidade}, uma lista de vulnerabilidades e histórico. A função \codigo{para\_dicionario()} prepara esse objeto para o JSON. Uma função recebe dados, faz uma tarefa previsível e devolve um resultado.
+\bloco{Aplicação} \codigo{modelos.py} declara as duas classes. \codigo{inventario.py} contém o CRUD sem \codigo{input} ou \codigo{print}; por isso a mesma regra pode ser chamada pelo menu ou pelo teste. Exemplo: \codigo{cadastrar\_ativo(ativos, 10, "SRV", "TI", "DC", 2, "Alta")} devolve o objeto criado ou informa um erro de regra.
+\bloco{Por que separar} O terminal não decide se o CVSS é válido; ele apenas pergunta o valor. A regra \codigo{validar\_cvss} decide o intervalo. Isso evita duplicar a mesma lógica e deixa o resultado previsível.
+\bloco{Checklist atendido} Classes do domínio; retornos definidos; ausência de globais desnecessárias; I/O fora das regras; exemplo coberto por teste sem erro.
+\end{document}

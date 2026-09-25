@@ -1,0 +1,22 @@
+\documentclass[11pt,a4paper]{article}
+\input{../_base.tex}
+\begin{document}\titulo{S1\_11 - Tuplas e conjuntos}{Categorias fixas e vulnerabilidades sem repetição}
+\section*{Entregável correto}
+O entregável é o exercício que compara dois conjuntos de vulnerabilidades por união e interseção. O card também apresenta tuplas para categorias fixas de ativos. As duas coleções resolvem problemas diferentes e não devem ser confundidas.
+\section*{Tupla: lista que não muda}
+Tupla usa parênteses, como \codigo{tipos = ("Servidor", "Notebook", "Roteador")}. Ela preserva ordem, permite acesso por índice e não recebe \codigo{append}. Isso comunica que as categorias foram previamente definidas. É possível desempacotar: \codigo{principal, reserva = ("Servidor", "Notebook")}. Usar tupla evita alterar por engano um conjunto de opções que deveria ser estável.
+\section*{Set: valores únicos e operações de comparação}
+Conjunto usa chaves: \codigo{vulns\_a = \{"SQLi", "XSS"\}}. Duplicatas somem automaticamente. A união \codigo{a | b} reúne tudo; a interseção \codigo{a \& b} mostra apenas itens comuns; a diferença \codigo{a - b} mostra o que está em \codigo{a}, mas não em \codigo{b}.
+\begin{lstlisting}
+servidor_a = {"senha fraca", "porta exposta"}
+servidor_b = {"porta exposta", "software desatualizado"}
+print("Uniao:", servidor_a | servidor_b)
+print("Em comum:", servidor_a & servidor_b)
+print("Somente A:", servidor_a - servidor_b)
+\end{lstlisting}
+\section*{Aplicação no projeto}
+O projeto pode manter categorias fixas em tupla ou \codigo{Enum}. Conjuntos são úteis para comparar vulnerabilidades entre dois ativos sem contar a mesma falha duas vezes. No \codigo{app.py}, a lista principal preserva os registros completos; o set serve à análise, não à persistência direta em JSON.
+\section*{Checklist demonstrado}
+Tuplas: criação, acesso e desempacotamento. Sets: criação, união, interseção, diferença e manipulação. A execução acima é a evidência solicitada pelo exercício 3; os comentários devem explicar qual conjunto representa cada ativo.
+\cardfonte{https://trello.com/c/qEvT77g5}
+\end{document}

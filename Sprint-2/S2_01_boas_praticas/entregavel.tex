@@ -1,0 +1,8 @@
+\input{../_preambulo.tex}
+\begin{document}\cabecalho{S2\_01 -- Boas Práticas de Código}{}
+\bloco{O que o card pede} Código legível, nomes que expressem intenção, funções com responsabilidade principal, sem segredos, tratamento seguro de erro e preservação do comportamento anterior.
+\bloco{Como funciona} Uma boa prática não é uma ``função secreta''. É uma escolha que permite ler o programa em ordem: \\ \codigo{cadastrar\_ativo} cria; \codigo{consultar\_por\_id} busca; \codigo{salvar\_ativos} grava. O nome substitui a necessidade de adivinhar o que o trecho faz.
+\bloco{Aplicação no projeto} O código foi dividido em \codigo{app.py}, \codigo{interface.py}, \codigo{inventario.py}, \codigo{modelos.py} e \codigo{persistencia.py}. A tela usa \codigo{input} e \codigo{print}; as regras ficam em \codigo{inventario.py}; a gravação JSON fica isolada. Não há senha, token ou credencial no código. Erros conhecidos retornam mensagens curtas, sem exibir detalhes internos.
+\bloco{Como conferir} Ler uma função por vez e perguntar: ela faz uma tarefa principal? Executar \codigo{python -m unittest -v test\_sprint2.py}; os testes confirmam que o CRUD anterior continua funcionando após a divisão.
+\bloco{Checklist atendido} Nomes claros; responsabilidade única; nenhum dado sensível; mensagens seguras; testes de regressão executados.
+\end{document}
