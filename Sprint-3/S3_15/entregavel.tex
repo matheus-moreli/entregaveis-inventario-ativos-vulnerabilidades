@@ -16,17 +16,19 @@ Foi construído um protótipo de alta fidelidade editável no Figma. O fluxo com
 
 \section*{O que foi estudado e aplicado}
 \begin{itemize}
-\item Heurísticas de Nielsen: visibilidade do estado, consistência e controle do usuário.
-\item Prototipação: painel inicial, dados resumidos e formulário de cadastro.
-\item WCAG 2.1: contraste entre o botão azul e o texto branco, rótulos claros e conteúdo legível.
+\item As dez heurísticas de Nielsen foram avaliadas individualmente em \texttt{avaliacao.md}.
+\item O wireframe de baixa fidelidade está em \texttt{wireframe.md}; o Figma registra o painel e o cadastro navegáveis.
+\item WCAG 2.1: critérios de contraste, teclado, foco, rótulos, erros e semântica foram mapeados com limites da evidência.
 \end{itemize}
 
 \section*{Avaliação e limites}
-O painel torna visíveis os ativos e vulnerabilidades abertas. A terminologia \textit{ativo} permanece igual em todo o fluxo. O protótipo foi testado em 13/10/2026, confirmando a navegação painel inicial para cadastro. Como se trata de um protótipo, validações de campos e foco por teclado ficam como requisitos da futura versão funcional.
+O painel torna visíveis ativos e vulnerabilidades abertas; a terminologia \textit{ativo} permanece consistente. O fluxo painel--cadastro foi navegado em 13/10/2026. As heurísticas com lacunas incluem: falta de confirmação/erro após Salvar, retorno/cancelamento e ajuda de formato ainda não demonstrados. A futura implementação deve preservar dados após erro e indicar claramente os campos inválidos.
+
+Para WCAG 2.1 AA, contraste de texto normal exige medição de cada par de cores (4,5:1); indicadores visuais de controles exigem 3:1. A cor do botão não foi medida, então não há aprovação de contraste. Navegação por teclado, foco visível e rótulos associados aos campos também precisam de teste na implementação funcional. Um frame no Figma não comprova semântica ou operação por leitor de tela.
 
 \section*{Como conferir}
 Abra o link do Figma indicado em \texttt{evidencia\_figma.md}; clique em \textit{Cadastrar ativo} e confirme a transição para o formulário. Consulte \texttt{avaliacao.md} para a avaliação heurística e as observações de acessibilidade.
 
 \section*{Conclusão}
-O entregável demonstra um fluxo simples e coerente para o Inventário de Ativos, acompanhado de avaliação heurística e de critérios práticos de acessibilidade.
+O entregável demonstra um fluxo inicial no Figma e registra de forma verificável o que foi observado, o que precisa melhorar e o que ainda não pode ser declarado conforme à WCAG.
 \end{document}

@@ -20,3 +20,16 @@ try:
     print("inv @ b:", por_inversa)
 except np.linalg.LinAlgError:
     print("Matriz singular ou numericamente instável.")
+
+valor_risco = 320 / 47
+print("Truncamento (2 casas):", np.trunc(valor_risco * 100) / 100)
+print("Arredondamento (2 casas):", round(valor_risco, 2))
+
+dependencias = np.array([[0.0, 0.2], [0.3, 0.0]])
+sistema_risco = np.eye(2) - dependencias
+risco_proprio = np.array([8.0, 4.0])
+risco_efetivo = np.linalg.solve(sistema_risco, risco_proprio)
+residual = sistema_risco @ risco_efetivo - risco_proprio
+print("Risco efetivo:", risco_efetivo)
+print("Norma infinita do residual:", np.linalg.norm(residual, ord=np.inf))
+print("Condicionamento de I-A:", np.linalg.cond(sistema_risco))

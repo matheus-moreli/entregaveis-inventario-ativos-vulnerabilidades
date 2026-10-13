@@ -16,16 +16,16 @@ Foi produzida uma collection Postman para a API de ativos, acompanhada de guia d
 \section*{O que foi estudado e aplicado}
 \begin{itemize}
 \item Métodos HTTP: GET para consulta, POST para criação, PUT para atualização e DELETE para remoção.
-\item Códigos de status: 200, 201 e 204 confirmam o resultado esperado de cada operação.
+\item Códigos de status: 200, 201 e 204 para sucesso; 400 e 404 para entradas inválidas e recursos inexistentes.
 \item JSON: o corpo das requisições envia nome, tipo e responsável do ativo.
-\item Testes de integração: cada requisição possui uma assertion de status.
+\item Testes de integração: as assertions verificam status e corpo JSON, incluindo presença, alteração e remoção do mesmo ativo.
 \end{itemize}
 
 \section*{Execução comprovada}
-Em 13/10/2026, a collection foi executada pelo Newman 11.16.0, executor de collections do Postman. Foram executadas quatro requisições, quatro assertions aprovadas e zero falhas. O POST guarda o identificador retornado em \texttt{ativoId}; o PUT e o DELETE reutilizam esse identificador para validar o CRUD encadeado.
+Em 13/10/2026, a collection foi executada pelo Newman 6.2.3, executor de collections do Postman. Foram executadas nove requisições, 14 assertions aprovadas e zero falhas. O POST guarda o identificador retornado em \texttt{ativoId}; o PUT e o DELETE reutilizam esse identificador. Requisições GET conferem o nome atualizado e a ausência após remoção. A exportação bruta da ferramenta está em \texttt{resultado\_newman.json}.
 
 \section*{Como conferir}
-Inicie a API da S3\_19 e execute \texttt{postman\_collection.json}. O guia \texttt{como\_usar\_collection.md} descreve o fluxo; \texttt{resultado\_newman.md} registra os códigos obtidos e o comando de execução.
+Inicie a API da S3\_19 e execute \texttt{npx --yes newman run Sprint-3/S3\_18/postman\_collection.json} na raiz dos entregáveis. O guia \texttt{como\_usar\_collection.md} descreve o fluxo; \texttt{resultado\_newman.md} registra os códigos e os asserts.
 
 \section*{Conclusão}
 O entregável documenta e testa a API REST do Inventário de Ativos com uma collection reproduzível e evidência real de execução.

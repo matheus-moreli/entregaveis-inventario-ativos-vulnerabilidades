@@ -1,0 +1,2286 @@
+{
+  "collection": {
+    "item": [
+      {
+        "id": "a69ac6b7-d66a-4018-8f27-007bdc6bcc85",
+        "name": "Listar ativos",
+        "request": {
+          "url": {
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "44039a4c-e134-4a5e-9b22-39e9d3a70733",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('GET responde 200', () => pm.response.to.have.status(200));",
+                "pm.test('GET devolve lista JSON', () => pm.expect(pm.response.json()).to.be.an('array'));"
+              ],
+              "_lastExecutionId": "df0cf8c9-dcef-48df-aaca-9f0b811d5161"
+            }
+          }
+        ]
+      },
+      {
+        "id": "b27aac9c-b33f-428f-bad3-992b49f6fa8c",
+        "name": "Cadastrar ativo",
+        "request": {
+          "url": {
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"{{nomeTeste}}\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "edc586de-044d-4b72-b776-8434bc825a64",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('POST responde 201', () => pm.response.to.have.status(201));",
+                "pm.test('POST devolve ID e nome', () => { const d = pm.response.json(); pm.expect(d.id).to.be.a('number'); pm.expect(d.nome).to.eql(pm.collectionVariables.get('nomeTeste')); });",
+                "pm.collectionVariables.set('ativoId', pm.response.json().id);"
+              ],
+              "_lastExecutionId": "6add87a3-5754-4fb9-ba7e-0cd8216120f5"
+            }
+          },
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "32ae6e56-2c7f-4354-a332-e9a6485d9dd7",
+              "type": "text/javascript",
+              "exec": [
+                "pm.collectionVariables.set('nomeTeste', 'Servidor Postman ' + Date.now());"
+              ],
+              "_lastExecutionId": "52ffc6a6-8185-4e78-9cca-df299b37c1c6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "c4159d54-0509-4df4-af2d-e60bdc34d3f5",
+        "name": "Atualizar ativo",
+        "request": {
+          "url": {
+            "path": [
+              "ativos",
+              "{{ativoId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"{{nomeTeste}} Atualizado\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "8ad31c0a-b9c0-4b78-90b5-ef974a6ffdf0",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('PUT responde 200', () => pm.response.to.have.status(200));",
+                "pm.test('PUT confirma mensagem', () => pm.expect(pm.response.json().mensagem).to.eql('ativo atualizado'));"
+              ],
+              "_lastExecutionId": "0ac2bb4a-8f77-432c-bde7-bfb8b8964f33"
+            }
+          }
+        ]
+      },
+      {
+        "id": "3e325e71-2b7c-464b-ad1f-a815f4e2be02",
+        "name": "Confirmar atualização",
+        "request": {
+          "url": {
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "d5904a62-bbc9-4f0a-96a3-451d5df41903",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Ativo atualizado aparece na lista', () => { const id = Number(pm.collectionVariables.get('ativoId')); const ativo = pm.response.json().find(a => a.id === id); pm.expect(ativo.nome).to.eql(pm.collectionVariables.get('nomeTeste') + ' Atualizado'); });"
+              ],
+              "_lastExecutionId": "e707ccda-3fb7-4c13-84eb-3df1a0a9ae65"
+            }
+          }
+        ]
+      },
+      {
+        "id": "8d95b0dd-2ec2-416f-9484-3373625dd694",
+        "name": "Remover ativo",
+        "request": {
+          "url": {
+            "path": [
+              "ativos",
+              "{{ativoId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "16de7f98-dab2-4e2d-84bd-0dd6b127995b",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('DELETE responde 204', () => pm.response.to.have.status(204));",
+                "pm.test('DELETE sem corpo', () => pm.expect(pm.response.text()).to.eql(''));"
+              ],
+              "_lastExecutionId": "f2e9c70b-2cb5-4df3-b7e9-5ce88864a362"
+            }
+          }
+        ]
+      },
+      {
+        "id": "2ea69ef2-09a7-4c99-b1a5-4119b8016214",
+        "name": "Confirmar remoção",
+        "request": {
+          "url": {
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "acf272fc-8322-4b3a-b5a6-761060db3ae6",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Ativo removido não aparece', () => { const id = Number(pm.collectionVariables.get('ativoId')); pm.expect(pm.response.json().some(a => a.id === id)).to.eql(false); });"
+              ],
+              "_lastExecutionId": "65d16907-5bab-4b65-8cab-caf9a8e6d2b7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "01d2aaa6-5efe-4aa2-9ede-080b87726aec",
+        "name": "Cadastro sem nome rejeitado",
+        "request": {
+          "url": {
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"tipo\": \"Servidor\"}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "92c16b0f-6149-40b1-901d-96beb5621824",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Entrada inválida responde 400', () => pm.response.to.have.status(400));",
+                "pm.test('Erro em JSON', () => pm.expect(pm.response.json().erro).to.be.a('string'));"
+              ],
+              "_lastExecutionId": "01ded482-d199-49b8-9843-fbbf0c8aa790"
+            }
+          }
+        ]
+      },
+      {
+        "id": "db921f77-f77e-4241-8626-d8d5e2f97f8c",
+        "name": "Atualização inexistente",
+        "request": {
+          "url": {
+            "path": [
+              "ativos",
+              "99999999"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"Inexistente\", \"tipo\": \"Servidor\"}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "12941238-8764-4f34-b859-37e019d39ccd",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+              ],
+              "_lastExecutionId": "15569049-0509-4b47-acb1-4f96ef13351b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "5ba38a7e-48ed-4bcf-aff7-9882c1a3c584",
+        "name": "Remoção inexistente",
+        "request": {
+          "url": {
+            "path": [
+              "ativos",
+              "99999999"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "7e243755-29df-4834-9de0-1646b262d046",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+              ],
+              "_lastExecutionId": "34944b2a-fb8c-44c4-a506-ba315057f3a3"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [
+      {
+        "type": "any",
+        "value": "http://127.0.0.1:5000",
+        "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "ativoId"
+      }
+    ],
+    "info": {
+      "_postman_id": "5a04209f-7c5d-4d77-8f38-d655405dd0d3",
+      "name": "Inventário de Ativos - S3_18",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "id": "fde92033-c481-485f-93d2-50888e2aaf40",
+    "values": []
+  },
+  "globals": {
+    "id": "055f4f46-7b47-4295-abb5-937c2cf8a38a",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 9,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 10,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 9,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 9,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 9,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 14,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 9,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 7.222222222222222,
+      "responseMin": 3,
+      "responseMax": 18,
+      "responseSd": 4.076430295076476,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1791927775865,
+      "completed": 1791927776666
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 9,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "0a3b4408-834c-4a47-9172-956d0641df45",
+          "httpRequestId": "e612458e-0f31-471c-b5a5-24b6a30fd095"
+        },
+        "item": {
+          "id": "a69ac6b7-d66a-4018-8f27-007bdc6bcc85",
+          "name": "Listar ativos",
+          "request": {
+            "url": {
+              "path": [
+                "ativos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "44039a4c-e134-4a5e-9b22-39e9d3a70733",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('GET responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('GET devolve lista JSON', () => pm.expect(pm.response.json()).to.be.an('array'));"
+                ],
+                "_lastExecutionId": "df0cf8c9-dcef-48df-aaca-9f0b811d5161"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "92cb4cb0-bf3d-419d-a7ad-968773b98ec3",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "f0f0ec7e-f0be-4891-8adb-08cbf7417589",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:55 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "3"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              93,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 18,
+          "responseSize": 3
+        },
+        "id": "a69ac6b7-d66a-4018-8f27-007bdc6bcc85",
+        "assertions": [
+          {
+            "assertion": "GET responde 200",
+            "skipped": false
+          },
+          {
+            "assertion": "GET devolve lista JSON",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "98d03aeb-9b81-4839-940d-564d44bf40ea",
+          "length": 9,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "99fed4c7-6374-40cf-bd0d-3f1c69228fd8"
+        },
+        "item": {
+          "id": "b27aac9c-b33f-428f-bad3-992b49f6fa8c",
+          "name": "Cadastrar ativo",
+          "request": {
+            "url": {
+              "path": [
+                "ativos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\": \"{{nomeTeste}}\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "edc586de-044d-4b72-b776-8434bc825a64",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('POST responde 201', () => pm.response.to.have.status(201));",
+                  "pm.test('POST devolve ID e nome', () => { const d = pm.response.json(); pm.expect(d.id).to.be.a('number'); pm.expect(d.nome).to.eql(pm.collectionVariables.get('nomeTeste')); });",
+                  "pm.collectionVariables.set('ativoId', pm.response.json().id);"
+                ],
+                "_lastExecutionId": "6add87a3-5754-4fb9-ba7e-0cd8216120f5"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "32ae6e56-2c7f-4354-a332-e9a6485d9dd7",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('nomeTeste', 'Servidor Postman ' + Date.now());"
+                ],
+                "_lastExecutionId": "52ffc6a6-8185-4e78-9cca-df299b37c1c6"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "99a7ca54-00dd-4a1d-9412-06150ba270fa",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "83",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"Servidor Postman 1791927775950\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+          }
+        },
+        "response": {
+          "id": "268df13e-5a74-42f7-af0c-3de0fb0ea7fa",
+          "status": "CREATED",
+          "code": 201,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:55 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "80"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              105,
+              100,
+              34,
+              58,
+              32,
+              51,
+              44,
+              10,
+              32,
+              32,
+              34,
+              110,
+              111,
+              109,
+              101,
+              34,
+              58,
+              32,
+              34,
+              83,
+              101,
+              114,
+              118,
+              105,
+              100,
+              111,
+              114,
+              32,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              32,
+              49,
+              55,
+              57,
+              49,
+              57,
+              50,
+              55,
+              55,
+              55,
+              53,
+              57,
+              53,
+              48,
+              34,
+              44,
+              10,
+              32,
+              32,
+              34,
+              116,
+              105,
+              112,
+              111,
+              34,
+              58,
+              32,
+              34,
+              83,
+              101,
+              114,
+              118,
+              105,
+              100,
+              111,
+              114,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 8,
+          "responseSize": 80
+        },
+        "id": "b27aac9c-b33f-428f-bad3-992b49f6fa8c",
+        "assertions": [
+          {
+            "assertion": "POST responde 201",
+            "skipped": false
+          },
+          {
+            "assertion": "POST devolve ID e nome",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8d971c5f-4901-4956-a30f-eb5aa653b644",
+          "length": 9,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "9ed0c3a3-7a37-4e8b-aed6-18da2ef3d23f"
+        },
+        "item": {
+          "id": "c4159d54-0509-4df4-af2d-e60bdc34d3f5",
+          "name": "Atualizar ativo",
+          "request": {
+            "url": {
+              "path": [
+                "ativos",
+                "{{ativoId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\": \"{{nomeTeste}} Atualizado\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8ad31c0a-b9c0-4b78-90b5-ef974a6ffdf0",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('PUT responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PUT confirma mensagem', () => pm.expect(pm.response.json().mensagem).to.eql('ativo atualizado'));"
+                ],
+                "_lastExecutionId": "0ac2bb4a-8f77-432c-bde7-bfb8b8964f33"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos",
+              "3"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "23551ee5-5f28-4125-b7d2-67fe82bf74b1",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "94",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"Servidor Postman 1791927775950 Atualizado\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+          }
+        },
+        "response": {
+          "id": "dc53326f-ee08-4420-b739-578a4bfcfbcd",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "37"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              110,
+              115,
+              97,
+              103,
+              101,
+              109,
+              34,
+              58,
+              32,
+              34,
+              97,
+              116,
+              105,
+              118,
+              111,
+              32,
+              97,
+              116,
+              117,
+              97,
+              108,
+              105,
+              122,
+              97,
+              100,
+              111,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 8,
+          "responseSize": 37
+        },
+        "id": "c4159d54-0509-4df4-af2d-e60bdc34d3f5",
+        "assertions": [
+          {
+            "assertion": "PUT responde 200",
+            "skipped": false
+          },
+          {
+            "assertion": "PUT confirma mensagem",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "9a3c4704-34d0-46c8-934d-c16bd7cdfec6",
+          "length": 9,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "ff3abba5-154f-40ca-a104-de5274cb206d"
+        },
+        "item": {
+          "id": "3e325e71-2b7c-464b-ad1f-a815f4e2be02",
+          "name": "Confirmar atualização",
+          "request": {
+            "url": {
+              "path": [
+                "ativos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d5904a62-bbc9-4f0a-96a3-451d5df41903",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Ativo atualizado aparece na lista', () => { const id = Number(pm.collectionVariables.get('ativoId')); const ativo = pm.response.json().find(a => a.id === id); pm.expect(ativo.nome).to.eql(pm.collectionVariables.get('nomeTeste') + ' Atualizado'); });"
+                ],
+                "_lastExecutionId": "e707ccda-3fb7-4c13-84eb-3df1a0a9ae65"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "29b0247d-8a8c-4e15-b70a-23b9258add75",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "e45e95c6-468e-49ee-b52f-96aca6ad0ab0",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "130"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              10,
+              32,
+              32,
+              123,
+              10,
+              32,
+              32,
+              32,
+              32,
+              34,
+              105,
+              100,
+              34,
+              58,
+              32,
+              51,
+              44,
+              10,
+              32,
+              32,
+              32,
+              32,
+              34,
+              110,
+              111,
+              109,
+              101,
+              34,
+              58,
+              32,
+              34,
+              83,
+              101,
+              114,
+              118,
+              105,
+              100,
+              111,
+              114,
+              32,
+              80,
+              111,
+              115,
+              116,
+              109,
+              97,
+              110,
+              32,
+              49,
+              55,
+              57,
+              49,
+              57,
+              50,
+              55,
+              55,
+              55,
+              53,
+              57,
+              53,
+              48,
+              32,
+              65,
+              116,
+              117,
+              97,
+              108,
+              105,
+              122,
+              97,
+              100,
+              111,
+              34,
+              44,
+              10,
+              32,
+              32,
+              32,
+              32,
+              34,
+              114,
+              101,
+              115,
+              112,
+              111,
+              110,
+              115,
+              97,
+              118,
+              101,
+              108,
+              34,
+              58,
+              32,
+              34,
+              84,
+              73,
+              34,
+              44,
+              10,
+              32,
+              32,
+              32,
+              32,
+              34,
+              116,
+              105,
+              112,
+              111,
+              34,
+              58,
+              32,
+              34,
+              83,
+              101,
+              114,
+              118,
+              105,
+              100,
+              111,
+              114,
+              34,
+              10,
+              32,
+              32,
+              125,
+              10,
+              93,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 130
+        },
+        "id": "3e325e71-2b7c-464b-ad1f-a815f4e2be02",
+        "assertions": [
+          {
+            "assertion": "Ativo atualizado aparece na lista",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8f6e81e4-39c1-4b47-a69e-d0294ddd1e14",
+          "length": 9,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "e34c9794-0106-49a3-8af5-a32e7c61a89e"
+        },
+        "item": {
+          "id": "8d95b0dd-2ec2-416f-9484-3373625dd694",
+          "name": "Remover ativo",
+          "request": {
+            "url": {
+              "path": [
+                "ativos",
+                "{{ativoId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "16de7f98-dab2-4e2d-84bd-0dd6b127995b",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('DELETE responde 204', () => pm.response.to.have.status(204));",
+                  "pm.test('DELETE sem corpo', () => pm.expect(pm.response.text()).to.eql(''));"
+                ],
+                "_lastExecutionId": "f2e9c70b-2cb5-4df3-b7e9-5ce88864a362"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos",
+              "3"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "2b878864-c815-4de4-b8d2-bdfbffc2540a",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "0904497b-7e8c-4f51-91fc-425b6f48ec6e",
+          "status": "NO CONTENT",
+          "code": 204,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": []
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 0
+        },
+        "id": "8d95b0dd-2ec2-416f-9484-3373625dd694",
+        "assertions": [
+          {
+            "assertion": "DELETE responde 204",
+            "skipped": false
+          },
+          {
+            "assertion": "DELETE sem corpo",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "464d31ec-3aa8-4733-8cb8-095505741511",
+          "length": 9,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "296640c0-7109-4273-aef3-fef2e7dbbd5b"
+        },
+        "item": {
+          "id": "2ea69ef2-09a7-4c99-b1a5-4119b8016214",
+          "name": "Confirmar remoção",
+          "request": {
+            "url": {
+              "path": [
+                "ativos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "acf272fc-8322-4b3a-b5a6-761060db3ae6",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Ativo removido não aparece', () => { const id = Number(pm.collectionVariables.get('ativoId')); pm.expect(pm.response.json().some(a => a.id === id)).to.eql(false); });"
+                ],
+                "_lastExecutionId": "65d16907-5bab-4b65-8cab-caf9a8e6d2b7"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "56767646-cae4-415f-a187-122da9b55d10",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "fa3e4278-52f0-4a29-b143-d27b5d945b29",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "3"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              93,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 5,
+          "responseSize": 3
+        },
+        "id": "2ea69ef2-09a7-4c99-b1a5-4119b8016214",
+        "assertions": [
+          {
+            "assertion": "Ativo removido não aparece",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "0a0c44c0-8b2d-46f2-9613-fda3b5acd0dc",
+          "length": 9,
+          "cycles": 1,
+          "position": 6,
+          "iteration": 0,
+          "httpRequestId": "64ff5a60-a9db-4bac-83bc-20b57fdb496f"
+        },
+        "item": {
+          "id": "01d2aaa6-5efe-4aa2-9ede-080b87726aec",
+          "name": "Cadastro sem nome rejeitado",
+          "request": {
+            "url": {
+              "path": [
+                "ativos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tipo\": \"Servidor\"}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "92c16b0f-6149-40b1-901d-96beb5621824",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Entrada inválida responde 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Erro em JSON', () => pm.expect(pm.response.json().erro).to.be.a('string'));"
+                ],
+                "_lastExecutionId": "01ded482-d199-49b8-9843-fbbf0c8aa790"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "b8042019-9288-4d73-b024-48d62a48b631",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "20",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"tipo\": \"Servidor\"}"
+          }
+        },
+        "response": {
+          "id": "96880c1d-2821-4b74-b029-23f0f5eece19",
+          "status": "BAD REQUEST",
+          "code": 400,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "55"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              101,
+              114,
+              114,
+              111,
+              34,
+              58,
+              32,
+              34,
+              110,
+              111,
+              109,
+              101,
+              32,
+              101,
+              32,
+              116,
+              105,
+              112,
+              111,
+              32,
+              115,
+              92,
+              117,
+              48,
+              48,
+              101,
+              51,
+              111,
+              32,
+              111,
+              98,
+              114,
+              105,
+              103,
+              97,
+              116,
+              92,
+              117,
+              48,
+              48,
+              102,
+              51,
+              114,
+              105,
+              111,
+              115,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 5,
+          "responseSize": 55
+        },
+        "id": "01d2aaa6-5efe-4aa2-9ede-080b87726aec",
+        "assertions": [
+          {
+            "assertion": "Entrada inválida responde 400",
+            "skipped": false
+          },
+          {
+            "assertion": "Erro em JSON",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "147b46e5-d4b6-42e8-a998-378b14d55673",
+          "length": 9,
+          "cycles": 1,
+          "position": 7,
+          "iteration": 0,
+          "httpRequestId": "c3ff89ce-fba4-4ab5-bb1e-ae5837560f71"
+        },
+        "item": {
+          "id": "db921f77-f77e-4241-8626-d8d5e2f97f8c",
+          "name": "Atualização inexistente",
+          "request": {
+            "url": {
+              "path": [
+                "ativos",
+                "99999999"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\": \"Inexistente\", \"tipo\": \"Servidor\"}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "12941238-8764-4f34-b859-37e019d39ccd",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+                ],
+                "_lastExecutionId": "15569049-0509-4b47-acb1-4f96ef13351b"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos",
+              "99999999"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "53626046-f833-4846-82df-b738699fcf79",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "43",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nome\": \"Inexistente\", \"tipo\": \"Servidor\"}"
+          }
+        },
+        "response": {
+          "id": "b1e5c14a-2ad0-47f5-9528-5bbea6bff1d7",
+          "status": "NOT FOUND",
+          "code": 404,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "42"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              101,
+              114,
+              114,
+              111,
+              34,
+              58,
+              32,
+              34,
+              97,
+              116,
+              105,
+              118,
+              111,
+              32,
+              110,
+              92,
+              117,
+              48,
+              48,
+              101,
+              51,
+              111,
+              32,
+              101,
+              110,
+              99,
+              111,
+              110,
+              116,
+              114,
+              97,
+              100,
+              111,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 42
+        },
+        "id": "db921f77-f77e-4241-8626-d8d5e2f97f8c",
+        "assertions": [
+          {
+            "assertion": "ID inexistente responde 404",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "f6bfeeee-59c5-4fd1-b574-51902d4e465c",
+          "length": 9,
+          "cycles": 1,
+          "position": 8,
+          "iteration": 0,
+          "httpRequestId": "eb016b0c-1c7b-4b2b-8eca-cd3521ddb793"
+        },
+        "item": {
+          "id": "5ba38a7e-48ed-4bcf-aff7-9882c1a3c584",
+          "name": "Remoção inexistente",
+          "request": {
+            "url": {
+              "path": [
+                "ativos",
+                "99999999"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e243755-29df-4834-9de0-1646b262d046",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+                ],
+                "_lastExecutionId": "34944b2a-fb8c-44c4-a506-ba315057f3a3"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "ativos",
+              "99999999"
+            ],
+            "host": [
+              "127",
+              "0",
+              "0",
+              "1"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "291ad9bb-f99f-449d-a2ba-8161e36fdc06",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "127.0.0.1:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "220c983e-deec-4ad8-b2e6-8655f586aa37",
+          "status": "NOT FOUND",
+          "code": 404,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.8 Python/3.13.15"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 13 Oct 2026 21:42:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "42"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              101,
+              114,
+              114,
+              111,
+              34,
+              58,
+              32,
+              34,
+              97,
+              116,
+              105,
+              118,
+              111,
+              32,
+              110,
+              92,
+              117,
+              48,
+              48,
+              101,
+              51,
+              111,
+              32,
+              101,
+              110,
+              99,
+              111,
+              110,
+              116,
+              114,
+              97,
+              100,
+              111,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 42
+        },
+        "id": "5ba38a7e-48ed-4bcf-aff7-9882c1a3c584",
+        "assertions": [
+          {
+            "assertion": "ID inexistente responde 404",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 392
+    },
+    "failures": [],
+    "error": null
+  }
+}

@@ -1,24 +1,18 @@
-# S3_06 — qualidade de software
+# S3_06 — qualidade de software e análise estática
 
-## Antes e depois
+Execução em 13/10/2026 sobre a branch de melhoria do Trabalho 2. O arquivo `antes_refatoracao.py` é um exemplo didático de função curta com nomes pouco claros e formatação ruim; `depois_refatoracao.py` usa nomes descritivos, `strip`, docstring e formatação PEP 8. No projeto real, regras antes dispersas em funções de `inventario.py` passaram a métodos de `Inventario`; `persistencia.py` ganhou `RepositorioJSON` e gravação atômica, `risco.py` ganhou `AnalisadorRisco`. As funções antigas ficaram como adaptadores para preservar menu e testes. Essa refatoração reduziu a distância entre modelo de dados e operações, sem alterar o comportamento observado pelos testes.
 
-antes_refatoracao.py é propositalmente um exemplo curto com nomes pouco claros,
-sem espaços adequados e sem documentação. Ele representa um código que até funciona,
-mas dificulta manutenção.
+## Evidência de ferramentas
 
-Em depois_refatoracao.py, foram aplicados:
+| Comando | Saída observada |
+|---|---|
+| `python -m flake8` no projeto principal | nenhuma ocorrência; código de saída 0 |
+| `python -m black .` no projeto principal | 9 arquivos formatados, 1 já conforme |
+| `python -m black --check .` | 10 arquivos conformes; código de saída 0 |
+| `python -m pylint --errors-only app.py modelos.py inventario.py persistencia.py risco.py servico.py` | nenhum erro; código de saída 0 |
+| `python -m pylint app.py modelos.py inventario.py persistencia.py risco.py servico.py` | nota 9,29/10; avisos de projeto e estilo analisados abaixo |
+| `python -m pylint Sprint-3/S3_06/depois_refatoracao.py` | nota 10,00/10 no exemplo refatorado |
 
-- nomes que explicam os dados recebidos;
-- validação com strip(), evitando aceitar apenas espaços;
-- docstring explicando a responsabilidade da função;
-- formatação compatível com PEP 8.
+O `pylint` completo aponta, entre outros, muitos argumentos/atributos nos objetos e operações de domínio, alguns docstrings ausentes e duas lambdas locais em laços de `risco.py`. Os argumentos refletem os campos exigidos pelo enunciado, mas podem virar objetos de entrada em evolução futura. O alerta de lambda não causa captura tardia: ela é usada imediatamente por `max` dentro da mesma iteração. As checagens `type(...) is int` são intencionais em campos onde `bool`, subclasse de `int`, deve ser rejeitado. `do_GET` mantém o nome exigido por `BaseHTTPRequestHandler`.
 
-## Conferência reproduzível
-
-Na pasta raiz do Trabalho 2, foram executados flake8 e unittest.
-Resultado: nenhuma ocorrência do flake8 e 40 testes aprovados. Para este recorte,
-também é possível executar black --check depois_refatoracao.py e
-flake8 depois_refatoracao.py.
-
-As ferramentas não substituem a leitura do código: elas ajudam a manter um padrão,
-enquanto a função continua curta e adequada ao nível do trabalho.
+Análise estática detecta estilo e sinais de manutenção, mas não substitui testes. A suíte de 45 testes passou após a formatação; o relatório S3_07 registra cobertura e seus limites.

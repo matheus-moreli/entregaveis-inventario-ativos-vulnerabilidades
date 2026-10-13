@@ -4,4 +4,5 @@
 \bloco{Cenário de erro} CA06/RN02: dado CVSS 11, quando cadastrar vulnerabilidade, então o cadastro é recusado sem alterar a lista. CA07/RF02: dado ID inexistente, quando consultar, então o resultado é ``não encontrado'', sem erro técnico.
 \bloco{Como viram testes} Os cenários viraram métodos que começam com \codigo{testar\_} em \codigo{test\_sprint2.py}. O esperado é conferido por \codigo{assertEqual}, \codigo{assertIn} ou \codigo{assertRaises}.
 \bloco{Checklist atendido} Contexto, ação e resultado; sucesso e falha; resultado visível; requisito indicado; possibilidade de automação.
+\bloco{Matriz completa de cenários} O arquivo versionado \codigo{docs/criterios\_aceitacao.md} registra CA01--CA16 com requisito, Dado, Quando e Então. O CRUD tem ao menos dois casos por operação: cadastro válido/duplicado; consulta existente/inexistente; atualização válida/nome já usado; exclusão cancelada/confirmada com limpeza de dependências. Os resultados são observáveis no dicionário de objetos e no JSON recarregado. A revisão por outro integrante foi solicitada pelo card e ainda depende de registro humano; não é declarada como concluída.
 \end{document}

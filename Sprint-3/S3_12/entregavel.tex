@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{amsmath,amssymb}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_12\\Erros Numéricos}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -25,6 +26,10 @@ Experimentos com ponto flutuante e estabilidade numérica. Este documento regist
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Representação e aproximação}
+Em binary64, $0,1+0,2$ é representado aproximadamente por $0,30000000000000004$. O erro absoluto contra $0,3$ é cerca de $5,55\cdot10^{-17}$; o relativo é cerca de $1,85\cdot10^{-16}$. Para $6,8085106$, truncar a duas casas dá $6,80$ e arredondar dá $6,81$; os erros absolutos são aproximadamente $0,0085106$ e $0,0014894$.
+\section*{Residual no risco}
+Para $I-A=\left[\begin{smallmatrix}1&-0,2\\-0,3&1\end{smallmatrix}\right]$ e $p=(8,4)^T$, $\det(I-A)=0,94$ e a solução é $(440/47,320/47)^T$. O script calcula $e=(I-A)r-p$ e sua norma máxima, compara \texttt{solve} com inversão explícita e mede o número de condição. Residual pequeno confirma equações computadas, mas matriz mal condicionada pode amplificar erro de entrada.
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
 \end{document}

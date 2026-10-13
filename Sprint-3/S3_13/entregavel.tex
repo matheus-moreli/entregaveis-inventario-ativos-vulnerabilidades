@@ -25,6 +25,10 @@ Lista resolvida de tabelas-verdade e argumentos. Este documento registra o objet
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Tabela e equivalências}
+Com $P$ = ativo existente e $Q$ = CVSS válido, o cadastro exige $P\land Q$. Para $(P,Q)=(F,F),(F,V),(V,F),(V,V)$, $P\land Q$ resulta $F,F,F,V$; a implicação $P\to Q$ resulta $V,V,F,V$. As colunas de $\neg(P\land Q)$ e $\neg P\lor\neg Q$ são iguais: $V,V,V,F$, demonstrando De Morgan. $P\lor\neg P$ é tautologia e $P\land\neg P$ é contradição.
+\section*{Argumentos}
+Modus ponens é válido: de $P\to Q$ e $P$ segue $Q$, sem linha com premissas verdadeiras e conclusão falsa. A afirmação do consequente é inválida: de $P\to Q$ e $Q$ não segue $P$; $(P,Q)=(F,V)$ é contraexemplo. A lista \texttt{resolucao\_logica.md} traz tabelas completas, modus tollens e aplicação à validação do inventário. O script confirma as equivalências.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+Formalizar premissas evita confundir uma condição suficiente com necessária em regras de software.
 \end{document}

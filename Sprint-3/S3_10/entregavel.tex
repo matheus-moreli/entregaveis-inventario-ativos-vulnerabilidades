@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{amsmath,amssymb}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_10\\Álgebra Linear II: Sistemas}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -25,6 +26,10 @@ Sistema de risco efetivo (I - A)x = b. Este documento registra o objetivo do car
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Eliminação 2 por 2}
+Para $\left[\begin{smallmatrix}2&1\\1&-1\end{smallmatrix}\right](x,y)^T=(5,1)^T$, a operação $R_2\leftarrow2R_2-R_1$ produz $[0,-3|-3]$. Logo $y=1$ e $x=2$. Determinante $-3\neq0$: duas retas se cruzam num ponto. Já $[1,1|2;2,2|5]$ reduz a $[0,0|1]$ e é impossível; com termo 4 no lugar de 5, há infinitas soluções.
+\section*{Eliminação 3 por 3 e risco}
+Para $B=\left[\begin{smallmatrix}1&1&1\\2&-1&1\\1&2&-1\end{smallmatrix}\right]$ e $b=(6,3,2)^T$, faça $R_2\leftarrow R_2-2R_1$, $R_3\leftarrow R_3-R_1$, depois $R_3\leftarrow R_3+R_2/3$. A última linha é $[0,0,-7/3|-7]$: $z=3$, $y=2$, $x=1$. No inventário, $B=I-A$, $b=Mv$ e $x$ é o risco efetivo. O arquivo \texttt{calculo\_manual.md} mostra matrizes aumentadas, classificação e geometria.
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
 \end{document}

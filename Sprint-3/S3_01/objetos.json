@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "tipo": "Notebook",
+    "nome": "NB-LAB-01",
+    "responsavel": "Laboratório",
+    "vulnerabilidades": [
+      {
+        "cve": "CVE-2019-0708",
+        "severidade": 9.8
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "tipo": "Servidor",
+    "nome": "SRV-WEB-01",
+    "responsavel": "Infraestrutura",
+    "vulnerabilidades": [
+      {
+        "cve": "CVE-2021-44228",
+        "severidade": 10.0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "tipo": "Roteador",
+    "nome": "RT-FILIAL-01",
+    "responsavel": "Redes",
+    "vulnerabilidades": []
+  }
+]

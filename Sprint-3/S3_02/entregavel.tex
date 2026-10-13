@@ -25,6 +25,10 @@ Algoritmos recursivos e comparação com abordagens iterativas e funcionais. Est
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Comparação medida}
+O script \texttt{comparar\_desempenho.py} registrou a mediana de cinco execuções em Python 3.13.15/Windows. Para fatorial de 800, iteração levou 0,074453 ms/chamada e recursão 0,114057 ms/chamada; ambas têm tempo $O(n)$, mas a recursão acrescenta pilha $O(n)$. Para Fibonacci de 30, a versão sem cache levou 66,0056 ms/chamada e a memoizada 0,0037 ms/chamada. Sem cache há recomputação de subproblemas; com cache, tempo e memória são $O(n)$.
+\section*{Funções de alta ordem}
+\texttt{map} extrai nomes, \texttt{filter} seleciona ativos de criticidade Alta/Crítica, \texttt{reduce} soma comprimentos e \texttt{sorted} com \texttt{lambda} ordena por nome. A tabela completa, o método de medição e suas limitações constam em \texttt{analise\_comparativa.md}; os valores absolutos podem mudar em outra máquina.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+Os exemplos mostram que recursão pode ser clara, mas memoização é decisiva em problemas com subproblemas repetidos.
 \end{document}

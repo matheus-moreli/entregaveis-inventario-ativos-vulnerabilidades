@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 def conexao():
     banco = sqlite3.connect(CAMINHO_BANCO)
+    banco.execute("PRAGMA foreign_keys = ON")
     banco.row_factory = sqlite3.Row
     return banco
 

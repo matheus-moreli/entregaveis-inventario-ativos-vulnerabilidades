@@ -1,8 +1,7 @@
-# S3_17 — verificação da integração assíncrona
+# S3_17 — execução da integração assíncrona
 
-O frontend foi servido localmente e consumiu a rota GET /ativos da API Flask do
-S3_19. A API respondeu HTTP 200, com cabeçalho CORS liberando a origem local.
+Em 13/10/2026, executei a API Flask de S3_19 em `127.0.0.1:5000` e servi o `index.html` de S3_17 em `127.0.0.1:8000`. Cadastrei na base de demonstração um ativo fictício: **Servidor de demonstração**, tipo **Servidor**.
 
-Ao clicar em Carregar ativos, a página mostrou: 0 ativo(s) carregado(s). Esse
-resultado é correto para a base de demonstração vazia. O importante é que a
-requisição fetch foi concluída, tratada com async/await e exibida na página.
+No navegador, cliquei em **Carregar ativos**. A página exibiu `1 ativo(s) carregado(s).` e o item `Servidor de demonstração - Servidor`. Isso comprova o fluxo Fetch API → resposta JSON → atualização da interface. O código também trata erro HTTP, formato inesperado e falha de comunicação; os dados são inseridos com `textContent`, sem interpretar HTML recebido da API.
+
+Dados de teste são locais e fictícios. A execução não depende de login.

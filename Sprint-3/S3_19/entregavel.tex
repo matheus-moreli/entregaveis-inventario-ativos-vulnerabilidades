@@ -23,7 +23,7 @@ MER, SQL e CRUD persistido. Este documento registra o objetivo do card, a soluç
 \end{itemize}
 
 \section*{Como conferir}
-O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
+O modelo 1:N está em \texttt{mer.md}; as tabelas e chaves estrangeiras estão em \texttt{schema.sql}. Execute \texttt{python testar\_api.py} para testar criação, leitura, alteração e exclusão com persistência SQLite. A API Flask em \texttt{api.py} habilita \texttt{PRAGMA foreign\_keys=ON} para aplicar a relação também nas requisições. O frontend de S3\_17 consome esta API.
 
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.

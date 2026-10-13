@@ -13,3 +13,10 @@ for p, q in product([False, True], repeat=2):
 
 print("As duas últimas colunas são iguais: Lei de De Morgan.")
 print("Modus ponens: se p -> q e p são verdadeiros, então q é válido.")
+assert all((not (p and q)) == ((not p) or (not q))
+           for p, q in product([False, True], repeat=2))
+assert all(p or not p for p in (False, True))
+assert not any(p and not p for p in (False, True))
+contraexemplo = (False, True)
+assert implicacao(*contraexemplo) and contraexemplo[1] and not contraexemplo[0]
+print("Afirmação do consequente inválida: p=F, q=V é contraexemplo.")

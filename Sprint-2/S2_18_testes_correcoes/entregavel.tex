@@ -2,7 +2,7 @@
 \begin{document}\cabecalho{S2\_18 -- Testes e Correções}{}
 \bloco{Ferramenta usada} \codigo{unittest} já vem com Python; não exige instalação externa. Cada teste monta sua própria base no método \codigo{setUp}, então o resultado não depende do JSON real, de internet ou de dados sensíveis.
 \bloco{O que é testado} Cadastro e busca por ID; duplicidade; filtro sem modificação; atualização preservando ID e criando histórico; exclusão cancelada e confirmada; vulnerabilidade válida; CVE/CVSS inválidos; ida e volta do JSON em arquivo temporário.
-\bloco{Como executar} Na pasta do projeto, usar \codigo{python -m unittest -v test\_sprint2.py}. O \codigo{-v} mostra o nome de cada teste; se algo falhar, o \codigo{assert} informa o valor esperado e o encontrado. O resultado esperado atual é oito testes com \codigo{OK}.
+\bloco{Como executar} Na pasta do projeto, usar \codigo{python -m unittest -v test\_sprint2.py}. O \codigo{-v} mostra o nome de cada teste; se algo falhar, o \codigo{assert} informa o valor esperado e o encontrado. A contagem verificada em 13/10/2026 foi 36 testes nesse arquivo, todos com \codigo{OK}.
 \bloco{Correção sem regressão} Após uma mudança, executar a suíte inteira. Isso verifica que corrigir uma regra, como CVSS, não quebrou o cadastro de ativos ou a persistência.
-\bloco{Checklist} Determinísticos, sem dados reais, falhas explicativas, proteção contra regressão e suíte limpa.
+\bloco{Cobertura do CRUD} Cadastro: válido, ID e nome duplicados. Consulta: ID presente/ausente e filtro sem alteração. Atualização: válida e inválida sem alteração parcial. Exclusão: cancelada e confirmada, inclusive remoção de vulnerabilidades e dependências. Cada operação tem ao menos dois cenários automatizados. O histórico de falha/correção deve usar saídas reais de execução; não há registro anterior de um teste vermelho neste entregável.
 \end{document}
