@@ -5,5 +5,7 @@
 - Prevenção de erros: o botão de cadastro deve validar campos obrigatórios.
 - Acessibilidade: estrutura semântica, título por seção, tabela com cabeçalhos e navegação por teclado.
 
-O arquivo HTML é o protótipo pronto para ser reproduzido no Figma. O card exige
-um arquivo Figma, portanto este item ainda precisa da criação dentro da conta Figma.
+O arquivo HTML foi a referência inicial. O protótipo final foi construído no Figma
+com quadros, textos e formas editáveis e possui a navegação entre o painel inicial
+e o cadastro de ativo. Os links do arquivo e da visualização navegável estão em
+`evidencia_figma.md`.
