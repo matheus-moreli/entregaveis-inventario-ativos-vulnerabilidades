@@ -1,6 +1,6 @@
 # S3_07 — testes e cobertura do Trabalho 2
 
-Em 13/10/2026, `python -m unittest -q` executou **45 testes** com resultado `OK`. Eles cobrem cadastro, duplicidade, validações de fronteira, consulta, atualização sem alteração parcial, exclusão cancelada e confirmada com limpeza de vínculos, serialização JSON, proteção contra falha de gravação, subclasses, dependências, risco próprio/efetivo e respostas do modo de serviço. A API demonstrativa de S3_19 possui teste próprio e passou separadamente.
+Em 13/10/2026, `python -m unittest -q` executou **47 testes** com resultado `OK`. Eles cobrem cadastro, duplicidade, validações de fronteira, consulta, atualização sem alteração parcial, exclusão cancelada e confirmada com limpeza de vínculos, serialização JSON, proteção contra falha de gravação, subclasses, dependências persistidas, rejeição de matriz singular, risco próprio/efetivo e respostas do modo de serviço. A API demonstrativa de S3_19 possui teste próprio e passou separadamente.
 
 Para reproduzir a cobertura: na raiz do projeto principal, `python -m coverage run -m unittest` e `python -m coverage report`. O arquivo `.coveragerc` limita a análise ao código da aplicação, sem inflar o percentual com as linhas dos testes.
 
@@ -9,8 +9,8 @@ Para reproduzir a cobertura: na raiz do projeto principal, `python -m coverage r
 | interface.py | 666 | 29% |
 | inventario.py | 331 | 84% |
 | modelos.py | 80 | 92% |
-| persistencia.py | 62 | 87% |
-| risco.py | 77 | 97% |
+| persistencia.py | 62 | 89% |
+| risco.py | 77 | 100% |
 | servico.py | 36 | 56% |
 | **Total** | **1252** | **56%** |
 

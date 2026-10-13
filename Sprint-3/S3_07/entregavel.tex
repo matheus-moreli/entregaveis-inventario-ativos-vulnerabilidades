@@ -26,7 +26,7 @@ Suite automatizada para o Trabalho 2. Este documento registra o objetivo do card
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
 \section*{Resultado de execução e cobertura}
-\texttt{python -m unittest -q} executou 45 testes com resultado OK em 13/10/2026. \texttt{python -m coverage run -m unittest} seguido de \texttt{python -m coverage report}, com \texttt{.coveragerc} limitado ao código da aplicação, mediu 56\% de cobertura total. Por módulo: interface 29\%, inventário 84\%, modelos 92\%, persistência 87\%, risco 97\% e serviço 56\%.
+\texttt{python -m unittest -q} executou 47 testes com resultado OK em 13/10/2026. \texttt{python -m coverage run -m unittest} seguido de \texttt{python -m coverage report}, com \texttt{.coveragerc} limitado ao código da aplicação, mediu 56\% de cobertura total. Por módulo: interface 29\%, inventário 84\%, modelos 92\%, persistência 89\%, risco 100\% e serviço 56\%.
 \section*{Casos e limites}
 Os testes incluem CRUD válido/inválido, CVE/CVSS, JSON, dependências, cálculo de risco e respostas do serviço. O novo teste de gravação simula erro na substituição do JSON e confirma que a versão anterior permanece. A interface de teclado concentra os caminhos não cobertos; o CI atual verifica testes e estilo, sem build Docker. O relatório \texttt{relatorio\_testes.md} registra a tabela e comandos. Não há log preservado de teste vermelho anterior; não foi inventado.
 \section*{Conclusão}
