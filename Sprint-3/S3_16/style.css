@@ -1,0 +1,14 @@
+:root {
+  --fundo: #f5f7fa;
+  --texto: #172033;
+  --destaque: #2457a6;
+  --borda: #d6dbe5;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: var(--fundo); color: var(--texto); }
+main { max-width: 1000px; margin: auto; padding: 32px 20px; }
+.grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cartao { background: white; border: 1px solid var(--borda); border-radius: 8px; padding: 16px; }
+.cartao h2 { color: var(--destaque); font-size: 1.1rem; margin-top: 0; }
+@media (max-width: 700px) { .grade { grid-template-columns: 1fr; } }
