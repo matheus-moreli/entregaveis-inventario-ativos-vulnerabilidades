@@ -1,0 +1,13 @@
+FILA (FIFO)
+
+entrada                              saída
+  enqueue                              dequeue
+     |                                    |
+     v                                    v
+[primeiro] -> [segundo] -> [terceiro] -> None
+
+LISTA ENCADEADA
+
+cabeca -> [valor | proximo] -> [valor | proximo] -> None
+
+Cada nó guarda o valor e a referência para o próximo nó.
