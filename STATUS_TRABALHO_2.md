@@ -4,7 +4,7 @@ O Trabalho 2 amplia o inventário do Trabalho 1 com classes de domínio, operaç
 
 ## Evidências executadas
 
-- 47 testes automatizados do projeto principal passaram localmente, incluindo persistência das dependências e rejeição de matriz singular. O job `testes-e-estilo` da [execução 38472278580](https://github.com/matheus-moreli/inventario-ativos-vulnerabilidades/actions/runs/38472278580) passou antes desses dois testes novos; uma nova execução de CI será vinculada após o push.
+- 47 testes automatizados do projeto principal passaram localmente, incluindo persistência das dependências e rejeição de matriz singular. O job `testes-e-estilo` da [execução 38478653977](https://github.com/matheus-moreli/inventario-ativos-vulnerabilidades/actions/runs/38478653977) também passou após essas alterações.
 - A collection de S3_18 executou 9 requisições e 14 asserções com Newman, sem falhas; o resultado está em `Sprint-3/S3_18/resultado_newman.md` e no JSON da mesma pasta.
 - O teste de S3_19 comprovou POST, GET, PUT e DELETE da API SQLite. O navegador de S3_17 exibiu um ativo recebido da API; a evidência está na pasta do card.
 - Os PDFs alterados foram recompilados com MiKTeX e seu texto pôde ser extraído. Códigos, relatórios e cálculos ficam junto dos respectivos cards.
