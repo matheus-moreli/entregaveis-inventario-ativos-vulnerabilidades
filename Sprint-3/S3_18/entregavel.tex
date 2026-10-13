@@ -1,7 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep,topsep=4pt}
@@ -12,19 +11,22 @@
 \maketitle
 
 \section*{Entregável}
-API documentada e collection de testes. Este documento registra o objetivo do card, a solução desenvolvida e a forma de conferência. Os arquivos de código e as evidências citadas permanecem na mesma pasta deste documento.
+Foi produzida uma collection Postman para a API de ativos, acompanhada de guia de uso e evidência de execução. A collection possui operações GET, POST, PUT e DELETE sobre o recurso \texttt{/ativos}.
 
 \section*{O que foi estudado e aplicado}
 \begin{itemize}
-\item Métodos HTTP
-\item Códigos de status
-\item Respostas JSON
-\item Testes de integração
+\item Métodos HTTP: GET para consulta, POST para criação, PUT para atualização e DELETE para remoção.
+\item Códigos de status: 200, 201 e 204 confirmam o resultado esperado de cada operação.
+\item JSON: o corpo das requisições envia nome, tipo e responsável do ativo.
+\item Testes de integração: cada requisição possui uma assertion de status.
 \end{itemize}
 
+\section*{Execução comprovada}
+Em 13/10/2026, a collection foi executada pelo Newman 11.16.0, executor de collections do Postman. Foram executadas quatro requisições, quatro assertions aprovadas e zero falhas. O POST guarda o identificador retornado em \texttt{ativoId}; o PUT e o DELETE reutilizam esse identificador para validar o CRUD encadeado.
+
 \section*{Como conferir}
-O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
+Inicie a API da S3\_19 e execute \texttt{postman\_collection.json}. O guia \texttt{como\_usar\_collection.md} descreve o fluxo; \texttt{resultado\_newman.md} registra os códigos obtidos e o comando de execução.
 
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+O entregável documenta e testa a API REST do Inventário de Ativos com uma collection reproduzível e evidência real de execução.
 \end{document}

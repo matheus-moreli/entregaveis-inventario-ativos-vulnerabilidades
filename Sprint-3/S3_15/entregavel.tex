@@ -1,9 +1,9 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{hyperref}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_15\\Usabilidade, Prototipação e Acessibilidade}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -12,19 +12,21 @@
 \maketitle
 
 \section*{Entregável}
-Protótipo e avaliação heurística. Este documento registra o objetivo do card, a solução desenvolvida e a forma de conferência. Os arquivos de código e as evidências citadas permanecem na mesma pasta deste documento.
+Foi construído um protótipo de alta fidelidade editável no Figma. O fluxo começa no painel do inventário e o botão \textit{Cadastrar ativo} leva à tela de cadastro. O arquivo-fonte e a visualização navegável estão registrados em \texttt{evidencia\_figma.md}.
 
 \section*{O que foi estudado e aplicado}
 \begin{itemize}
-\item Heurísticas de Nielsen
-\item Protótipo de alta fidelidade
-\item Barreiras de acessibilidade
-\item WCAG 2.1
+\item Heurísticas de Nielsen: visibilidade do estado, consistência e controle do usuário.
+\item Prototipação: painel inicial, dados resumidos e formulário de cadastro.
+\item WCAG 2.1: contraste entre o botão azul e o texto branco, rótulos claros e conteúdo legível.
 \end{itemize}
 
+\section*{Avaliação e limites}
+O painel torna visíveis os ativos e vulnerabilidades abertas. A terminologia \textit{ativo} permanece igual em todo o fluxo. O protótipo foi testado em 13/10/2026, confirmando a navegação painel inicial para cadastro. Como se trata de um protótipo, validações de campos e foco por teclado ficam como requisitos da futura versão funcional.
+
 \section*{Como conferir}
-O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
+Abra o link do Figma indicado em \texttt{evidencia\_figma.md}; clique em \textit{Cadastrar ativo} e confirme a transição para o formulário. Consulte \texttt{avaliacao.md} para a avaliação heurística e as observações de acessibilidade.
 
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+O entregável demonstra um fluxo simples e coerente para o Inventário de Ativos, acompanhado de avaliação heurística e de critérios práticos de acessibilidade.
 \end{document}
