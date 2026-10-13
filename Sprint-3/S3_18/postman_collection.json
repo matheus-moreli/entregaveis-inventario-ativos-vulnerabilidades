@@ -3,19 +3,49 @@
     "name": "Inventário de Ativos - S3_18",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:5000" },
+    { "key": "ativoId", "value": "" }
+  ],
   "item": [
     {
       "name": "Listar ativos",
-      "request": { "method": "GET", "url": "http://127.0.0.1:5000/ativos" }
+      "request": { "method": "GET", "url": "{{baseUrl}}/ativos" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('GET responde 200', function () { pm.response.to.have.status(200); });"
+      ] } }]
     },
     {
       "name": "Cadastrar ativo",
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"nome\":\"Servidor Teste\",\"tipo\":\"Servidor\"}" },
-        "url": "http://127.0.0.1:5000/ativos"
-      }
+        "body": { "mode": "raw", "raw": "{\"nome\":\"Servidor Postman\",\"tipo\":\"Servidor\",\"responsavel\":\"TI\"}" },
+        "url": "{{baseUrl}}/ativos"
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('POST responde 201', function () { pm.response.to.have.status(201); });",
+        "pm.collectionVariables.set('ativoId', pm.response.json().id);"
+      ] } }]
+    },
+    {
+      "name": "Atualizar ativo",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"nome\":\"Servidor Postman Atualizado\",\"tipo\":\"Servidor\",\"responsavel\":\"TI\"}" },
+        "url": "{{baseUrl}}/ativos/{{ativoId}}"
+      },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('PUT responde 200', function () { pm.response.to.have.status(200); });"
+      ] } }]
+    },
+    {
+      "name": "Remover ativo",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/ativos/{{ativoId}}" },
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('DELETE responde 204', function () { pm.response.to.have.status(204); });"
+      ] } }]
     }
   ]
 }
