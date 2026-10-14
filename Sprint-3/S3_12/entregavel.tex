@@ -20,6 +20,7 @@ Experimentos com ponto flutuante e estabilidade numérica. Este documento regist
 \item Erro absoluto e relativo
 \item Truncamento e arredondamento
 \item Tolerância numérica
+\item Número de condição e matriz quase singular
 \item Comparação solve e inv
 \end{itemize}
 
@@ -30,6 +31,8 @@ O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houv
 Em binary64, $0,1+0,2$ é representado aproximadamente por $0,30000000000000004$. O erro absoluto contra $0,3$ é cerca de $5,55\cdot10^{-17}$; o relativo é cerca de $1,85\cdot10^{-16}$. Para $6,8085106$, truncar a duas casas dá $6,80$ e arredondar dá $6,81$; os erros absolutos são aproximadamente $0,0085106$ e $0,0014894$.
 \section*{Residual no risco}
 Para $I-A=\left[\begin{smallmatrix}1&-0,2\\-0,3&1\end{smallmatrix}\right]$ e $p=(8,4)^T$, $\det(I-A)=0,94$ e a solução é $(440/47,320/47)^T$. O script calcula $e=(I-A)r-p$ e sua norma máxima, compara \texttt{solve} com inversão explícita e mede o número de condição. Residual pequeno confirma equações computadas, mas matriz mal condicionada pode amplificar erro de entrada.
+\section*{Matriz quase singular da aula}
+Para $A_2=\left[\begin{smallmatrix}0&0,1&0,9\\0,1&0&0,9\\0,1&0,9&0\end{smallmatrix}\right]$, cada linha soma 1 e $I-A_2$ é singular em teoria. Em ponto flutuante, seu determinante pode sair próximo de zero sem ser exatamente zero. Por isso o script verifica $\kappa_2(I-A_2)$ com \texttt{np.linalg.cond}: acima de $1/\varepsilon_{\mathrm{máq}}$, rejeita o sistema; acima de $10^8$, avisa sobre perda de precisão. O programa principal usa $\kappa_\infty$, uma norma diferente, e também resolve o sistema sem calcular a inversa para obter o risco.
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
 \end{document}
