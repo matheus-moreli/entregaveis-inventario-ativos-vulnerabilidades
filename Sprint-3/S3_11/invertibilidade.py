@@ -2,7 +2,9 @@ import numpy as np
 
 
 invertivel = np.array([[1.0, -0.2], [-0.3, 1.0]])
-singular = np.array([[1.0, -1.0], [-1.0, 1.0]])
+pesos_singulares = np.array(
+    [[0.0, 0.5, 0.5], [0.5, 0.0, 0.5], [0.5, 0.5, 0.0]])
+singular = np.eye(3) - pesos_singulares
 
 for nome, matriz in [("invertível", invertivel), ("singular", singular)]:
     determinante = np.linalg.det(matriz)
@@ -12,4 +14,7 @@ for nome, matriz in [("invertível", invertivel), ("singular", singular)]:
     else:
         print("Inversa =", np.linalg.inv(matriz))
 
-print("Para matriz 3x3, a regra de Sarrus é uma forma manual possível.")
+exemplo_2x2 = np.array([[2.0, 1.0], [1.0, 1.0]])
+exemplo_3x3 = np.array([[1.0, 2.0, 0.0], [0.0, 1.0, 1.0], [1.0, 0.0, 1.0]])
+print("Inversa de [[2,1],[1,1]] =", np.linalg.inv(exemplo_2x2))
+print("Determinante 3x3 por conferência =", np.linalg.det(exemplo_3x3))

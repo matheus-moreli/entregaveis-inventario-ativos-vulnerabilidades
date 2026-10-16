@@ -25,6 +25,10 @@ Relatório de qualidade, linting e refatoração. Este documento registra o obje
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Resultados reais das ferramentas}
+Na branch de melhoria, \texttt{python -m flake8} retornou zero ocorrências; \texttt{python -m black .} formatou nove arquivos e \texttt{python -m black --check .} confirmou dez conformes. \texttt{pylint --errors-only} não apontou erros nos módulos centrais; a análise completa atribuiu 9,29/10 e mostrou avisos de muitos argumentos, docstrings e estilo. No exemplo \texttt{depois\_refatoracao.py}, pylint deu 10,00/10.
+\section*{Antes, depois e limites}
+O exemplo \texttt{antes\_refatoracao.py} tem nomes vagos e formatação fraca; \texttt{depois\_refatoracao.py} usa nomes, validação e docstring. No programa real, operações passaram a métodos de \texttt{Inventario}, persistência a \texttt{RepositorioJSON} e risco a \texttt{AnalisadorRisco}; adaptadores preservam as chamadas antigas. O alerta de muitos atributos decorre dos campos exigidos; as duas lambdas sinalizadas são executadas imediatamente. O relatório \texttt{relatorio\_qualidade.md} registra comandos e análise.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+Os 45 testes passaram após a formatação. Ferramentas estáticas ajudam a localizar manutenção difícil, mas exigem leitura do código para decidir se cada aviso é defeito.
 \end{document}

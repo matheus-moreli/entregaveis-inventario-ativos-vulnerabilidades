@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{url}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_20\\Redes, Segurança, LGPD e Sustentabilidade}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -25,6 +26,12 @@ Relatório técnico do sistema. Este documento registra o objetivo do card, a so
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Comunicação e protocolo}
+O menu lê JSON local e não usa rede. No Trabalho 2, o container expõe consultas HTTP somente leitura na porta TCP 8080. Em IPv4, \texttt{127.0.0.1} identifica a própria máquina; numa rede /24, a máscara é \texttt{255.255.255.0}. TCP estabelece conexão com SYN, SYN+ACK e ACK antes de transportar a requisição HTTP, entregando fluxo ordenado. UDP não garante ordem ou entrega por si. Se houver exposição fora do host, são necessários TLS, firewall e controle de acesso; o protótipo não implementa TLS.
+\section*{Menor privilégio e LGPD}
+O sistema atual não possui login. A proposta é negar por padrão: operador altera registros, analista consulta riscos, auditor lê histórico, administrador gerencia permissões. Autenticação identifica a pessoa; autorização verifica sua permissão. O campo responsável pode identificar pessoa natural e ser dado pessoal (art. 5 da LGPD). Para uso real, definir finalidade e necessidade (art. 6), hipótese legal (art. 7) e medidas técnicas/administrativas (art. 46), como acesso limitado, backup e logs. O protótipo não é declarado plenamente conforme. Fonte: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm}.
+\section*{Estatística e sustentabilidade}
+Os seis riscos efetivos da base demonstrativa são 9,8; 10; 9,8; 12,8; 0; 7,8. Média 8,3667; mediana 9,8; moda 9,8; desvio padrão populacional aproximadamente 4,0157. São dados fictícios; 12,8 é risco agregado, não nota CVSS. Inventário pode orientar manutenção e evitar troca prematura, mas o projeto não mediu energia nem emissões. O container de 24 horas também consome energia; a execução contínua só faz sentido quando necessária. O relatório completo e as limitações estão em \texttt{relatorio\_tecnico.md}.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+O exercício relaciona rede, segurança, proteção de dados, estatística e impacto ambiental ao sistema real. O ensaio de 24 horas no servidor da disciplina depende de evidência futura; CI curto não o comprova.
 \end{document}

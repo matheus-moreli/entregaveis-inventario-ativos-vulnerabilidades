@@ -1,6 +1,5 @@
 import numpy as np
 
-
 valor = 0.1 + 0.2
 esperado = 0.3
 erro_absoluto = abs(valor - esperado)
@@ -12,7 +11,10 @@ print("Comparação com tolerância:", np.isclose(valor, esperado, atol=1e-12))
 
 matriz = np.array([[1.0, 0.999999], [0.999999, 0.999998]])
 vetor = np.array([2.0, 1.999997])
-print("Número de condição:", np.linalg.cond(matriz))
+condicao_exemplo = np.linalg.cond(matriz)
+print("Número de condição:", condicao_exemplo)
+if condicao_exemplo > 1e8:
+    print("Aviso: resultado sensível a pequenas mudanças nos dados.")
 try:
     direto = np.linalg.solve(matriz, vetor)
     por_inversa = np.linalg.inv(matriz) @ vetor
@@ -20,3 +22,27 @@ try:
     print("inv @ b:", por_inversa)
 except np.linalg.LinAlgError:
     print("Matriz singular ou numericamente instável.")
+
+valor_risco = 320 / 47
+print("Truncamento (2 casas):", np.trunc(valor_risco * 100) / 100)
+print("Arredondamento (2 casas):", round(valor_risco, 2))
+
+dependencias = np.array([[0.0, 0.2], [0.3, 0.0]])
+sistema_risco = np.eye(2) - dependencias
+risco_proprio = np.array([8.0, 4.0])
+risco_efetivo = np.linalg.solve(sistema_risco, risco_proprio)
+residual = sistema_risco @ risco_efetivo - risco_proprio
+print("Risco efetivo:", risco_efetivo)
+print("Norma infinita do residual:", np.linalg.norm(residual, ord=np.inf))
+print("Condicionamento de I-A:", np.linalg.cond(sistema_risco))
+
+# Exemplo da aula: cada linha de A2 soma 1, então I-A2 é singular em teoria.
+aula_a2 = np.array([[0.0, 0.1, 0.9], [0.1, 0.0, 0.9], [0.1, 0.9, 0.0]])
+aula_sistema = np.eye(3) - aula_a2
+aula_condicao = np.linalg.cond(aula_sistema)
+print("Determinante quase zero da aula:", np.linalg.det(aula_sistema))
+print("Condição do sistema quase singular:", aula_condicao)
+if aula_condicao > 1 / np.finfo(float).eps:
+    print("Solução rejeitada: matriz singular ou quase singular.")
+elif aula_condicao > 1e8:
+    print("Aviso: solução sensível a pequenos erros nos dados.")

@@ -17,3 +17,12 @@ print("I - A =", sistema)
 print("b =", risco_proprio)
 print("x =", risco_efetivo)
 print("Verificação:", sistema @ risco_efetivo)
+
+# Segundo exemplo: eliminação de Gauss 2x2 com solução única.
+dois = np.array([[2.0, 1.0], [1.0, -1.0]])
+termos = np.array([5.0, 1.0])
+print("Sistema 2x2:", np.linalg.solve(dois, termos))
+
+# Terceiro exemplo: três planos com interseção em (1, 2, 3).
+tres = np.array([[1.0, 1.0, 1.0], [2.0, -1.0, 1.0], [1.0, 2.0, -1.0]])
+print("Sistema 3x3:", np.linalg.solve(tres, [6.0, 3.0, 2.0]))

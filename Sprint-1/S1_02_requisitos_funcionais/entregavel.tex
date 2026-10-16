@@ -16,6 +16,10 @@ Um requisito funcional (RF) descreve uma ação observável do sistema. A formul
 CRUD é uma sigla para \textit{Create, Read, Update, Delete}: criar, consultar, alterar e excluir. No projeto, cadastro é Create; listar e buscar são Read; atualização é Update; remoção é Delete. O gerenciamento de vulnerabilidades complementa o CRUD porque registra um risco relacionado a um ativo.
 
 Exemplo de caso de uso: \textbf{Cadastrar ativo}. Ator: usuário do inventário. Fluxo: escolhe cadastro, informa os campos, o sistema valida os valores, guarda o ativo e confirma o resultado. Resultado esperado: o ativo aparece em uma consulta posterior.
+\par\medskip
+\textbf{Buscar ativo}. Ator: analista. Pré-condição: inventário carregado. Fluxo: escolhe busca por ID ou nome, informa o critério e recebe os ativos correspondentes. Alternativa: identificador inexistente produz ``Ativo não encontrado'', sem criar dados. Pós-condição: coleção preservada.
+\par\medskip
+\textbf{Remover ativo}. Ator: responsável pelo inventário. Pré-condição: ativo existente. Fluxo: informa o ID, confere o alvo e confirma. O sistema exclui o ativo e suas vulnerabilidades. Alternativa: cancelamento mantém os dados. Pós-condição: o ID excluído não aparece nas consultas.
 \section*{Como isso aparece no código}
 No \codigo{app.py}, as opções do menu são a tradução dos RFs. Funções separadas como \codigo{cadastrar\_ativo} e \codigo{buscar\_ativo} tornam possível relacionar uma função do código a uma necessidade do sistema. Se um requisito não estiver associado a um fluxo, ainda falta implementação ou especificação.
 \section*{Checklist demonstrado}

@@ -4,48 +4,232 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl", "value": "http://127.0.0.1:5000" },
-    { "key": "ativoId", "value": "" }
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:5000"
+    },
+    {
+      "key": "ativoId",
+      "value": ""
+    }
   ],
   "item": [
     {
       "name": "Listar ativos",
-      "request": { "method": "GET", "url": "{{baseUrl}}/ativos" },
-      "event": [{ "listen": "test", "script": { "exec": [
-        "pm.test('GET responde 200', function () { pm.response.to.have.status(200); });"
-      ] } }]
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/ativos"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('GET responde 200', () => pm.response.to.have.status(200));",
+              "pm.test('GET devolve lista JSON', () => pm.expect(pm.response.json()).to.be.an('array'));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     },
     {
       "name": "Cadastrar ativo",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"nome\":\"Servidor Postman\",\"tipo\":\"Servidor\",\"responsavel\":\"TI\"}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nome\": \"{{nomeTeste}}\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+        },
         "url": "{{baseUrl}}/ativos"
       },
-      "event": [{ "listen": "test", "script": { "exec": [
-        "pm.test('POST responde 201', function () { pm.response.to.have.status(201); });",
-        "pm.collectionVariables.set('ativoId', pm.response.json().id);"
-      ] } }]
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('POST responde 201', () => pm.response.to.have.status(201));",
+              "pm.test('POST devolve ID e nome', () => { const d = pm.response.json(); pm.expect(d.id).to.be.a('number'); pm.expect(d.nome).to.eql(pm.collectionVariables.get('nomeTeste')); });",
+              "pm.collectionVariables.set('ativoId', pm.response.json().id);"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('nomeTeste', 'Servidor Postman ' + Date.now());"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Atualizar ativo",
       "request": {
         "method": "PUT",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"nome\":\"Servidor Postman Atualizado\",\"tipo\":\"Servidor\",\"responsavel\":\"TI\"}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nome\": \"{{nomeTeste}} Atualizado\", \"tipo\": \"Servidor\", \"responsavel\": \"TI\"}"
+        },
         "url": "{{baseUrl}}/ativos/{{ativoId}}"
       },
-      "event": [{ "listen": "test", "script": { "exec": [
-        "pm.test('PUT responde 200', function () { pm.response.to.have.status(200); });"
-      ] } }]
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('PUT responde 200', () => pm.response.to.have.status(200));",
+              "pm.test('PUT confirma mensagem', () => pm.expect(pm.response.json().mensagem).to.eql('ativo atualizado'));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Confirmar atualização",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/ativos"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Ativo atualizado aparece na lista', () => { const id = Number(pm.collectionVariables.get('ativoId')); const ativo = pm.response.json().find(a => a.id === id); pm.expect(ativo.nome).to.eql(pm.collectionVariables.get('nomeTeste') + ' Atualizado'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     },
     {
       "name": "Remover ativo",
-      "request": { "method": "DELETE", "url": "{{baseUrl}}/ativos/{{ativoId}}" },
-      "event": [{ "listen": "test", "script": { "exec": [
-        "pm.test('DELETE responde 204', function () { pm.response.to.have.status(204); });"
-      ] } }]
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/ativos/{{ativoId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('DELETE responde 204', () => pm.response.to.have.status(204));",
+              "pm.test('DELETE sem corpo', () => pm.expect(pm.response.text()).to.eql(''));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Confirmar remoção",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/ativos"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Ativo removido não aparece', () => { const id = Number(pm.collectionVariables.get('ativoId')); pm.expect(pm.response.json().some(a => a.id === id)).to.eql(false); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cadastro sem nome rejeitado",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/ativos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"tipo\": \"Servidor\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Entrada inválida responde 400', () => pm.response.to.have.status(400));",
+              "pm.test('Erro em JSON', () => pm.expect(pm.response.json().erro).to.be.a('string'));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Atualização inexistente",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/ativos/99999999",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nome\": \"Inexistente\", \"tipo\": \"Servidor\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Remoção inexistente",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/ativos/99999999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('ID inexistente responde 404', () => pm.response.to.have.status(404));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     }
   ]
 }

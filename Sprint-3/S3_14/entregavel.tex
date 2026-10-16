@@ -25,6 +25,10 @@ Relatório de álgebra booleana e arquitetura de Von Neumann. Este documento reg
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Portas e circuito combinacional}
+O script \texttt{portas\_logicas.py} gera tabelas para AND, OR, NAND, NOR, XOR e XNOR. Um circuito de acesso usa $S=(C\land P)\land\neg B$, com credencial $C$, permissão $P$ e bloqueio $B$: uma AND combina C/P, uma NOT inverte B e a AND final decide. Das oito combinações, apenas $(1,1,0)$ libera. A absorção $A\land(A\lor B)=A$ é verificada para todas as entradas, eliminando duas operações no trecho simplificado.
+\section*{Arquitetura de Von Neumann}
+A memória guarda dados e instruções; a unidade de controle busca e decodifica; a ULA executa operações; registradores guardam valores imediatos; barramentos transportam dados, endereços e sinais. No ciclo busca--decodificação--execução, o contador de programa aponta a próxima instrução, que a CPU lê, interpreta e executa. Condições em software são implementadas por comparações e desvios apoiados em circuitos lógicos. A análise completa está em \texttt{resolucao\_portas.md}.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+O exercício conecta álgebra booleana, circuito combinacional e execução de programas.
 \end{document}

@@ -14,9 +14,14 @@
         const resposta = await fetch("http://127.0.0.1:5000/ativos");
         if (!resposta.ok) throw new Error("HTTP " + resposta.status);
         const ativos = await resposta.json();
-        document.getElementById("ativos").innerHTML = ativos.map(function (ativo) {
-          return "<li>" + ativo.nome + " - " + ativo.tipo + "</li>";
-        }).join("");
+        if (!Array.isArray(ativos)) throw new Error("Resposta inválida da API");
+        const lista = document.getElementById("ativos");
+        lista.replaceChildren();
+        ativos.forEach(function (ativo) {
+          const item = document.createElement("li");
+          item.textContent = String(ativo.nome) + " - " + String(ativo.tipo);
+          lista.appendChild(item);
+        });
         mensagem.textContent = ativos.length + " ativo(s) carregado(s).";
       } catch (erro) {
         mensagem.textContent = "Falha de comunicação: " + erro.message;

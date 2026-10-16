@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{amsmath,amssymb}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_09\\Álgebra Linear I: Matrizes}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -25,6 +26,12 @@ Matriz de incidência e risco próprio b = Mv. Este documento registra o objetiv
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Cálculo e espaço vetorial}
+Considere três equipamentos e quatro ocorrências. $M=\left[\begin{smallmatrix}1&0&0&0\\0&1&1&0\\0&0&0&1\end{smallmatrix}\right]$ e $v=(9;7,5;4;2)^T$. Assim $Mv=(9;11,5;2)^T$. A transformação $T:\mathbb R^4\to\mathbb R^3$, $T(v)=Mv$, é linear, pois $M(u+w)=Mu+Mw$ e $M(cu)=cMu$. Seu posto é 3, imagem $\mathbb R^3$ e núcleo $\operatorname{span}\{(0,1,-1,0)\}$; posto mais nulidade vale 4. O núcleo mostra que duas severidades no segundo ativo podem compensar uma à outra no total agregado.
+\section*{Composição com dependências}
+$M$ registra incidência, não dependências. Para $A=\left[\begin{smallmatrix}0&0&0\\0,25&0&0\\0&0,5&0\end{smallmatrix}\right]$, resolver $(I-A)r=Mv$ dá $r=(9;13,75;8,875)^T$. A composição $C(v)=(I-A)^{-1}Mv$ é linear para $A$ fixa e $I-A$ invertível. O cálculo passo a passo está em \texttt{calculo\_manual.md}; \texttt{matriz\_risco.py} confere os números.
+\section*{Cenário do material de apoio}
+No exemplo da aula, a vulnerabilidade V2 afeta Web e Banco de Dados. Com colunas V1 a V4, a matriz é $M=\left[\begin{smallmatrix}1&1&0&0\\0&0&1&0\\0&1&0&0\end{smallmatrix}\right]$ e $v=(9,8;5,3;7,5;4,3)^T$. Assim, $b=Mv=(15,1;7,5;5,3)^T$. A segunda coluna tem dois valores 1; a quarta é nula porque V4 ainda não afeta equipamento algum. Com $A=\left[\begin{smallmatrix}0&0,2&0\\0,5&0&0\\0&0,6&0\end{smallmatrix}\right]$, o risco efetivo é $x\approx(18,44;16,72;15,33)^T$. O fator de exposição $F=\operatorname{diag}(1,5;1;1)$ apresentado na aula é uma extensão opcional: $F(Mv)=(22,65;7,5;5,3)^T$; não é aplicado ao inventário sem pesos de exposição cadastrados.
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
 \end{document}

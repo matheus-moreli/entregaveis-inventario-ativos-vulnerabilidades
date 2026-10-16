@@ -25,6 +25,10 @@ Hierarquia de classes, polimorfismo, JSON e recarga. Este documento registra o o
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Modelo e demonstração concreta}
+\texttt{poo.py} define \texttt{Ativo} e as subclasses \texttt{Notebook}, \texttt{Servidor} e \texttt{Roteador}. Cada subclasse sobrescreve \texttt{exibir\_detalhes()} e chama \texttt{super()}. Percorrer uma lista mista executa o método de cada tipo sem seleção manual; \texttt{isinstance()} confirma a substituição por \texttt{Ativo}. \texttt{Vulnerabilidade} é objeto composto dentro do ativo, pois uma ocorrência não é um tipo de equipamento.
+\section*{Persistência e prova de recarga}
+\texttt{python poo.py} grava \texttt{objetos.json} como lista de objetos com campo \texttt{tipo}, lê o mesmo arquivo, recria as subclasses e usa assertivas para os IDs 1, 2, 3, os tipos e o vínculo da primeira vulnerabilidade. A saída real termina com ``JSON recarregado com IDs, subclasses e vínculos preservados''. O projeto principal tem seis subclasses e mantém a interface CRUD por funções de compatibilidade, com domínio em \texttt{Inventario}.
 \section*{Conclusão}
-O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
+A hierarquia, a composição e o ciclo JSON foram executados e podem ser repetidos pelo avaliador com a biblioteca padrão do Python.
 \end{document}

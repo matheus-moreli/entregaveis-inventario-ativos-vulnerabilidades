@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{amsmath,amssymb}
 \setlist[itemize]{noitemsep,topsep=4pt}
 \title{Sprint 3 - S3\_11\\Álgebra Linear III: Determinantes}
 \author{Matheus Moreli Durão Silva\\Matrícula 12621CBS217\\Cibersegurança - Bacharelado - Noturno}
@@ -25,6 +26,10 @@ Determinantes, inversas e invertibilidade. Este documento registra o objetivo do
 \section*{Como conferir}
 O avaliador pode abrir os arquivos desta pasta, executar os exemplos quando houver código e comparar a saída com a explicação apresentada. Nos cards ligados ao Inventário de Ativos, a solução foi relacionada ao Trabalho 2 sem modificar requisitos já atendidos do CRUD.
 
+\section*{Inversa e determinante}
+Para $B=\left[\begin{smallmatrix}2&1\\1&1\end{smallmatrix}\right]$, $\det B=1$ e $B^{-1}=\left[\begin{smallmatrix}1&-1\\-1&2\end{smallmatrix}\right]$. Para $C=\left[\begin{smallmatrix}1&2&0\\0&1&1\\1&0&1\end{smallmatrix}\right]$, Sarrus dá $1+2=3$ e cofatores na primeira linha dão $1-2(-1)=3$. Determinante diferente de zero implica transformação sem perda de dimensão e inversa existente.
+\section*{Singularidade e domínio do programa}
+Tome $A$ 3 por 3 com diagonal zero e cada entrada fora da diagonal igual a $0,5$. Cada peso é menor que 1, mas cada linha soma 1. Como $(I-A)(1,1,1)^T=0$, $I-A$ é singular. O programa proíbe soma de pesos por linha maior ou igual a 1: assim $I-A$ fica estritamente diagonal dominante e não singular. A checagem numérica adicional evita apresentar risco sem solução única.
 \section*{Conclusão}
 O artefato foi organizado para demonstrar tanto o conceito estudado quanto sua aplicação prática. As evidências de execução só são consideradas válidas quando produzidas pela ferramenta correspondente.
 \end{document}
