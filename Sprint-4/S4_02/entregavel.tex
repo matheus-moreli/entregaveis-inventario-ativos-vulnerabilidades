@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep,topsep=4pt}
+\title{Sprint 4 - S4\_02\\Princípios SOLID}
+\author{Matheus Moreli Durão Silva\\ Matrícula 12621CBS217\\ Cibersegurança - Bacharelado - Noturno}
+\date{2026}
+\begin{document}
+\maketitle
+
+\section*{Entregável e checklist}
+Este documento registra o card S4\_02, o conteúdo estudado, a aplicação no Inventário de Ativos e a forma de conferência. O arquivo complementar é \texttt{solid.md}. A entrega mantém o escopo introdutório: código claro, funções pequenas e nenhuma dependência que não seja necessária.
+
+\begin{itemize}
+\item Conceito: solid.
+\item Evidência: documento e, quando aplicável, exemplo executável na mesma pasta.
+\item Ligação com o trabalho: referência direta aos arquivos do repositório principal.
+\item Conferência: leitura do exemplo, execução dos testes e comparação com a explicação abaixo.
+\end{itemize}
+
+\section*{O que foi estudado e aplicado}
+O projeto aplica responsabilidades pequenas: InterfaceTerminal cuida da navegação, Inventario coordena as regras e AnalisadorRisco cuida da matemática. Os tipos de ativo herdam de Equipamento sem exigir condicionais espalhadas.
+
+\section*{Lógica da decisão}
+O exemplo é didático: não cria abstrações desnecessárias. O ganho está em cada arquivo ter uma responsabilidade clara e testável.
+
+\section*{Como conferir}
+Abra o arquivo complementar desta pasta. Para verificar o projeto principal, execute \texttt{python -m unittest -v} e \texttt{python -m flake8 .} na raiz. Os testes não modificam a base real. Quando o card trata Docker, Linux ou servidor, a documentação deve ser lida como preparação: a execução ficou deliberadamente pendente nesta etapa.
+
+\section*{Conclusão}
+O card foi documentado de forma verificável e conectado ao Inventário de Ativos, sem trocar uma solução simples por uma estrutura desnecessária.
+\end{document}

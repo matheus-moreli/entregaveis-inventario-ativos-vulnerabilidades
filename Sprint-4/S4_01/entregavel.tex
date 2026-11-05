@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep,topsep=4pt}
+\title{Sprint 4 - S4\_01\\Arquitetura de Software e Separação de Camadas}
+\author{Matheus Moreli Durão Silva\\ Matrícula 12621CBS217\\ Cibersegurança - Bacharelado - Noturno}
+\date{2026}
+\begin{document}
+\maketitle
+
+\section*{Entregável e checklist}
+Este documento registra o card S4\_01, o conteúdo estudado, a aplicação no Inventário de Ativos e a forma de conferência. O arquivo complementar é \texttt{diagrama\_camadas.md}. A entrega mantém o escopo introdutório: código claro, funções pequenas e nenhuma dependência que não seja necessária.
+
+\begin{itemize}
+\item Conceito: camadas.
+\item Evidência: documento e, quando aplicável, exemplo executável na mesma pasta.
+\item Ligação com o trabalho: referência direta aos arquivos do repositório principal.
+\item Conferência: leitura do exemplo, execução dos testes e comparação com a explicação abaixo.
+\end{itemize}
+
+\section*{O que foi estudado e aplicado}
+A aplicação separa interface, regras de negócio, modelos, persistência e cálculo de risco. A interface só conversa com o usuário; inventario.py aplica as regras; modelos.py descreve os objetos; persistencia.py lê e grava JSON; risco.py calcula as matrizes.
+
+\section*{Lógica da decisão}
+O diagrama mostra a direção das dependências. A regra importante é que a camada de domínio não depende do terminal. Assim, as mesmas regras podem ser testadas sem input ou print.
+
+\section*{Como conferir}
+Abra o arquivo complementar desta pasta. Para verificar o projeto principal, execute \texttt{python -m unittest -v} e \texttt{python -m flake8 .} na raiz. Os testes não modificam a base real. Quando o card trata Docker, Linux ou servidor, a documentação deve ser lida como preparação: a execução ficou deliberadamente pendente nesta etapa.
+
+\section*{Conclusão}
+O card foi documentado de forma verificável e conectado ao Inventário de Ativos, sem trocar uma solução simples por uma estrutura desnecessária.
+\end{document}

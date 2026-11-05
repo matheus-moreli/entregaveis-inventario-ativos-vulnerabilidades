@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep,topsep=4pt}
+\title{Sprint 4 - S4\_11\\Merge Sort}
+\author{Matheus Moreli Durão Silva\\ Matrícula 12621CBS217\\ Cibersegurança - Bacharelado - Noturno}
+\date{2026}
+\begin{document}
+\maketitle
+
+\section*{Entregável e checklist}
+Este documento registra o card S4\_11, o conteúdo estudado, a aplicação no Inventário de Ativos e a forma de conferência. O arquivo complementar é \texttt{merge\_sort.py}. A entrega mantém o escopo introdutório: código claro, funções pequenas e nenhuma dependência que não seja necessária.
+
+\begin{itemize}
+\item Conceito: Merge Sort.
+\item Evidência: documento e, quando aplicável, exemplo executável na mesma pasta.
+\item Ligação com o trabalho: referência direta aos arquivos do repositório principal.
+\item Conferência: leitura do exemplo, execução dos testes e comparação com a explicação abaixo.
+\end{itemize}
+
+\section*{O que foi estudado e aplicado}
+Merge Sort divide a lista ao meio, ordena as partes e faz a intercalação. A saída preserva todos os elementos e deixa explícita a etapa de combinação.
+
+\section*{Lógica da decisão}
+O algoritmo foi implementado para estudo. Na aplicação, sorted é a opção correta e simples, pois a linguagem já fornece uma ordenação confiável.
+
+\section*{Como conferir}
+Abra o arquivo complementar desta pasta. Para verificar o projeto principal, execute \texttt{python -m unittest -v} e \texttt{python -m flake8 .} na raiz. Os testes não modificam a base real. Quando o card trata Docker, Linux ou servidor, a documentação deve ser lida como preparação: a execução ficou deliberadamente pendente nesta etapa.
+
+\section*{Conclusão}
+O card foi documentado de forma verificável e conectado ao Inventário de Ativos, sem trocar uma solução simples por uma estrutura desnecessária.
+\end{document}

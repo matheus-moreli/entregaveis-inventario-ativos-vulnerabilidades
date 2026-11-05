@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep,topsep=4pt}
+\title{Sprint 4 - S4\_09\\Árvore Binária de Busca}
+\author{Matheus Moreli Durão Silva\\ Matrícula 12621CBS217\\ Cibersegurança - Bacharelado - Noturno}
+\date{2026}
+\begin{document}
+\maketitle
+
+\section*{Entregável e checklist}
+Este documento registra o card S4\_09, o conteúdo estudado, a aplicação no Inventário de Ativos e a forma de conferência. O arquivo complementar é \texttt{arvore\_busca.py}. A entrega mantém o escopo introdutório: código claro, funções pequenas e nenhuma dependência que não seja necessária.
+
+\begin{itemize}
+\item Conceito: árvore binária.
+\item Evidência: documento e, quando aplicável, exemplo executável na mesma pasta.
+\item Ligação com o trabalho: referência direta aos arquivos do repositório principal.
+\item Conferência: leitura do exemplo, execução dos testes e comparação com a explicação abaixo.
+\end{itemize}
+
+\section*{O que foi estudado e aplicado}
+A árvore coloca valores menores à esquerda e maiores à direita. A travessia em ordem produz uma lista ordenada, relacionando estrutura de dados e busca.
+
+\section*{Lógica da decisão}
+É um exemplo independente para o estudo do card. O inventário mantém dicionários e sorted, porque são mais adequados e legíveis para a quantidade pequena de ativos.
+
+\section*{Como conferir}
+Abra o arquivo complementar desta pasta. Para verificar o projeto principal, execute \texttt{python -m unittest -v} e \texttt{python -m flake8 .} na raiz. Os testes não modificam a base real. Quando o card trata Docker, Linux ou servidor, a documentação deve ser lida como preparação: a execução ficou deliberadamente pendente nesta etapa.
+
+\section*{Conclusão}
+O card foi documentado de forma verificável e conectado ao Inventário de Ativos, sem trocar uma solução simples por uma estrutura desnecessária.
+\end{document}

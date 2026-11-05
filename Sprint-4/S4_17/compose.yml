@@ -1,0 +1,7 @@
+services:
+  inventario:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./dados:/app/dados
