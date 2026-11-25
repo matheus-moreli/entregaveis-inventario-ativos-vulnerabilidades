@@ -1,6 +1,6 @@
 # Revisão de segurança
 
-Revisão estática na versão 1561b80. A coluna de verificação futura orienta o encerramento das lacunas identificadas.
+Revisão estática na versão 1561b80. Depois dela, o commit 797ec94 removeu as rotas-isca e o bb40a38 acrescentou testes de conferência com NumPy; nenhum dos dois altera as conclusões abaixo. A coluna de verificação futura orienta o encerramento das lacunas identificadas.
 
 | OWASP Top 10 2025 | Controle observado ou cenário | Verificação futura |
 |---|---|---|

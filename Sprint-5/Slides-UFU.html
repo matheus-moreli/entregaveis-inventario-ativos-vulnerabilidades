@@ -22,7 +22,7 @@ code,strong{color:#8aeadc}
 <section><h2>Do cadastro à priorização</h2><ul><li>Registrar ativos e suas vulnerabilidades.</li><li>Vincular dependências entre equipamentos.</li><li>Consultar o ranking e explicar os fatores do risco.</li></ul></section>
 <section><h2>O risco muda quando há dependências</h2><p>Exemplo ilustrativo. Um CVSS de 5 com exposição de 0,6 resulta em risco próprio de <strong>3</strong>.</p><p>Um servidor com risco próprio de 4 herda metade desse valor. Resultado <strong>4 + 0,5 × 3 = 5,5</strong>.</p></section>
 <section><h2>Arquitetura e operação</h2><ul><li>Terminal para cadastro, API para consultas e OpenAPI para o contrato.</li><li>Persistência JSON em volume Docker.</li><li>Saúde na porta 2217 e operações protegidas por Bearer.</li></ul></section>
-<section><h2>Evidências da entrega</h2><ul><li>91 testes aprovados e 6 subtestes na revisão 1561b80.</li><li>GitHub CI verde e configuração do Compose validada.</li><li>Histórico da V3 com mais de cinco dias ativos, sem reinícios registrados.</li></ul></section>
+<section><h2>Evidências da entrega</h2><ul><li>101 testes aprovados e 6 subtestes na revisão bb40a38.</li><li>GitHub CI verde e configuração do Compose validada.</li><li>Histórico da V3 com mais de cinco dias ativos, sem reinícios registrados.</li></ul></section>
 </main>
 </body>
 </html>

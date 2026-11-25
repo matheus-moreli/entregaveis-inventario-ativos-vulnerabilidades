@@ -1,6 +1,6 @@
 # Sprint 5 — Inventário de Ativos e Vulnerabilidades, UFU
 
-Os 21 cards desta sprint estão em `cards/`. As Sprints 1 a 4 já estão no [repositório de entregáveis](https://github.com/matheus-moreli/entregaveis-inventario-ativos-vulnerabilidades). Esta pasta complementa a entrega, com a revisão do programa em [1561b80](https://github.com/matheus-moreli/inventario-ativos-vulnerabilidades/commit/1561b80ab4aa7c3404eb0341029f310b0a624646) como referência.
+Os 21 cards desta sprint estão em `cards/`. As Sprints 1 a 4 já estão no [repositório de entregáveis](https://github.com/matheus-moreli/entregaveis-inventario-ativos-vulnerabilidades). Esta pasta complementa a entrega, com a revisão do programa em [bb40a38](https://github.com/matheus-moreli/inventario-ativos-vulnerabilidades/commit/bb40a3842268f797e6520eb3bf1e1c6bdb4aae14) como referência.
 
 **Como usar.** Abra o card pelo índice. Os contratos e a coleção estão em `api/`. Os exercícios independentes usam dados sintéticos em `laboratorio/`. Os modelos de infraestrutura estão em `infra/`. Consulte `Evidencias.md` para separar resultados reproduzidos, registros do GitHub e etapas que precisam do ambiente da disciplina.
 

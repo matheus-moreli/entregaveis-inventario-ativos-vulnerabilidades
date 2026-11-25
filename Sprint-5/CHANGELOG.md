@@ -15,5 +15,7 @@
 | 89a463b | Organização do projeto |
 | af45044 | Simplificação e padronização |
 | 1561b80 | Verificação Black no CI |
+| 797ec94 | Remoção das rotas-isca |
+| bb40a38 | Conferência independente do risco com NumPy |
 
 A tag é uma proposta. Para publicar uma release, usar uma revisão com CI verde, vincular a imagem do contêiner e anexar evidências da implantação correspondente.
