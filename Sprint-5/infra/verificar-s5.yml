@@ -1,0 +1,46 @@
+name: Verificações suplementares da S5
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install black pytest bandit pip-audit
+      - run: python app.py --testes
+      - run: python -m black --check app.py apresentacao dominio infraestrutura tests
+      - run: bandit -r app.py apresentacao dominio infraestrutura
+      - run: pip-audit -r requirements.txt
+  publicar-imagem:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: validar
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Gerar referência da imagem
+        id: imagem
+        run: printf 'tag=ghcr.io/%s:%s\n' "${GITHUB_REPOSITORY,,}" "$GITHUB_REF_NAME" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.imagem.outputs.tag }}

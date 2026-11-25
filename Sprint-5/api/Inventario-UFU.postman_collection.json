@@ -1,0 +1,237 @@
+{
+  "info": {
+    "name": "Inventário UFU · Sprint 5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:2217"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Saúde",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/saude",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "saude"
+          ]
+        },
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contrato OpenAPI",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/openapi.json",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "openapi.json"
+          ]
+        },
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ativos paginados",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/v1/ativos?pagina=1&limite=10&ordenar=risco",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "ativos"
+          ],
+          "query": [
+            {
+              "key": "pagina",
+              "value": "1"
+            },
+            {
+              "key": "limite",
+              "value": "10"
+            },
+            {
+              "key": "ordenar",
+              "value": "risco"
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ranking de riscos",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/v1/riscos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "riscos"
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consulta sem credencial",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/v1/ativos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "ativos"
+          ]
+        },
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Página inválida",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/v1/ativos?pagina=0",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "ativos"
+          ],
+          "query": [
+            {
+              "key": "pagina",
+              "value": "0"
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
